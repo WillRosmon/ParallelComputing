@@ -44,6 +44,8 @@ int main(int argc, const char * argv[]) {
             size++;
         }
     }
+    clock_t begin, end;
+    begin = clock();
     bool found = false;
     node *tempNode = head;
     for(int i = 0; i < size && !found; i++) {
@@ -57,5 +59,7 @@ int main(int argc, const char * argv[]) {
     if(!found) {
         std::cout << "The number was not found";
     }
+    end = clock();
+    std::cout << (double (end - begin) / CLOCKS_PER_SEC);
     return 0;
 }
