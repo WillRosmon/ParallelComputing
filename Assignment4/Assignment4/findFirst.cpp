@@ -7,7 +7,7 @@
 //
 
 #include <iostream>
-#include <omp.h>
+//#include <omp.h>
 #include <ctime>
 #include <chrono>
 #include <cmath>
@@ -22,7 +22,7 @@ int main(int argc, const char * argv[]) {
     srand(time(NULL));
     
     int randArray[arraySize];
-    omp_set_num_threads(numThreads);
+    //omp_set_num_threads(numThreads);
     
 #pragma omp parallel for schedule(guided)
     {
@@ -78,5 +78,6 @@ int findFirstOPos(int array[], int numToFind, int size) {
                 return i;
         }
     }
+    return 0;
     
 }
