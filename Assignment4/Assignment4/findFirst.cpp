@@ -7,7 +7,7 @@
 //
 
 #include <iostream>
-//#include <omp.h>
+#include <omp.h>
 #include <ctime>
 #include <chrono>
 #include <cmath>
@@ -22,14 +22,12 @@ int main(int argc, const char * argv[]) {
     srand(time(NULL));
     
     int randArray[arraySize];
-    //omp_set_num_threads(numThreads);
+    omp_set_num_threads(numThreads);
     
 #pragma omp parallel for schedule(guided)
-    {
         for(int i = 0; i < arraySize; i++) {
             randArray[i] = rand() % arraySize;
         }
-    }
     
     std::chrono::time_point<std::chrono::system_clock> start, end;
     start = std::chrono::system_clock::now();
@@ -59,12 +57,10 @@ int main(int argc, const char * argv[]) {
 int findFirstOn (int array[], int numToFind, int size) {
     int pos = size;
 #pragma omp parallel for schedule(guided)
-    {
         for(int i = 0; i < size; i++) {
             if(array[i] == numToFind && i < pos)
                 pos = i;
         }
-    }
     
     return pos;
 }
@@ -72,12 +68,10 @@ int findFirstOn (int array[], int numToFind, int size) {
 int findFirstOPos(int array[], int numToFind, int size) {
     int pos = size;
 #pragma omp parallel for schedule(dynamic)
-    {
         for(int i = 0; i < size; i++) {
             if(array[i] == numToFind)
                 return i;
         }
-    }
     return 0;
     
 }
