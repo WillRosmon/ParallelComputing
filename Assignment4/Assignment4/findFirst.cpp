@@ -69,9 +69,11 @@ int findFirstOPos(int array[], int numToFind, int size) {
     int pos = size;
 #pragma omp parallel for schedule(dynamic)
         for(int i = 0; i < size; i++) {
-            if(array[i] == numToFind)
-                return i;
+            if(array[i] == numToFind) {
+                pos = i;
+                break;
+            }
         }
-    return 0;
+    return pos;
     
 }
