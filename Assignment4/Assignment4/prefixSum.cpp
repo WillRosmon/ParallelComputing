@@ -50,7 +50,7 @@ int main(int argc, const char * argv[]) {
                 prefixSum[i] = prefixSum[i-1] + randArray[i];
             }
         
-#pragma omp for scheudle(static)
+#pragma omp for schedule(static)
         
             for(int i = 0; i < numThreads; i++) {
                 lastPositionValues[i] = prefixSum[lastPositions[i]];
@@ -58,7 +58,7 @@ int main(int argc, const char * argv[]) {
         
     
     
-#pragma omp for scheudle(static)
+#pragma omp for schedule(static)
     
         for(int i = 0; i < numThreads; i++) {
             for(int j = lastPositions[i]; j < arraySize; i++) {
