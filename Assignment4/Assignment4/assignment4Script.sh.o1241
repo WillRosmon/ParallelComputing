@@ -1,0 +1,31 @@
+5000 was not found in the array
+Time elapsed for O(n): 0.002099365000 was not found in the array
+Time taken for O(pos): 0.01304225000 was not found in the array
+Time elapsed for O(n): 0.002214165000 was not found in the array
+Time taken for O(pos): 0.03463895000 was not found in the array
+Time elapsed for O(n): 0.0005579845000 was not found in the array
+Time taken for O(pos): 0.03008515000 was not found in the array
+Time elapsed for O(n): 0.0003289335000 was not found in the array
+Time taken for O(pos): 0.03245635000 was found at position: 39216
+Time elapsed for O(n): 0.0002380275000 was found at position: 39216
+Time taken for O(pos): 0.039435179.7
+Integration Time Elapsed: 0.00040712478.9
+Integration Time Elapsed: 0.00036899271.9
+Integration Time Elapsed: 0.0003737674
+Integration Time Elapsed: 0.0003603444.5
+Integration Time Elapsed: 0.000351202100
+Integration Time Elapsed: 0.000210144100
+Integration Time Elapsed: 0.00270745100
+Integration Time Elapsed: 0.00269139100
+Integration Time Elapsed: 0.00272856100
+Integration Time Elapsed: 0.0027111380.5849
+Integration Time Elapsed: 154.88267.362
+Integration Time Elapsed: 155.37818.3266
+Integration Time Elapsed: 155.40478.9548
+Integration Time Elapsed: 154.18577.4588
+Integration Time Elapsed: 153.3289.10991
+Integration Time Elapsed: 34.655416.332
+Integration Time Elapsed: 105.5098.93829
+Integration Time Elapsed: 37.80288.93258
+Integration Time Elapsed: 37.64268.76169
+Integration Time Elapsed: 39.2253Square Root Time Elapsed: 0.0039292Minimum Reduction Time Elapsed: 0.00167897Square Root Time Elapsed: 0.00196218Minimum Reduction Time Elapsed: 0.000841278Square Root Time Elapsed: 0.000984223Minimum Reduction Time Elapsed: 0.000423109Square Root Time Elapsed: 0.000531005Minimum Reduction Time Elapsed: 0.000227689Square Root Time Elapsed: 0.000275296Minimum Reduction Time Elapsed: 0.000118419Square Root Time Elapsed: 0.0229667Minimum Reduction Time Elapsed: 0.0139614Square Root Time Elapsed: 0.105287Minimum Reduction Time Elapsed: 0.0300242Square Root Time Elapsed: 0.180377Minimum Reduction Time Elapsed: 0.0321483Square Root Time Elapsed: 0.169584Minimum Reduction Time Elapsed: 0.0334287Square Root Time Elapsed: 0.167739Minimum Reduction Time Elapsed: 0.0385369Square Root Time Elapsed: 0.00415207Minimum Reduction Time Elapsed: 0.00179619Square Root Time Elapsed: 0.0023084Minimum Reduction Time Elapsed: 0.000980447Square Root Time Elapsed: 0.00113169Minimum Reduction Time Elapsed: 0.000491182Square Root Time Elapsed: 0.000578217Minimum Reduction Time Elapsed: 0.000255958Square Root Time Elapsed: 0.000325604Minimum Reduction Time Elapsed: 0.000179038Square Root Time Elapsed: 0.00413628Minimum Reduction Time Elapsed: 0.00178045Square Root Time Elapsed: 0.0021049Minimum Reduction Time Elapsed: 0.000902645Square Root Time Elapsed: 0.00105894Minimum Reduction Time Elapsed: 0.000454725Square Root Time Elapsed: 0.000556944Minimum Reduction Time Elapsed: 0.000255143Square Root Time Elapsed: 0.000312501Minimum Reduction Time Elapsed: 0.000162974
