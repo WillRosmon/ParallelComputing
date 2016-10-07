@@ -54,6 +54,8 @@ int main(int argc, const char * argv[]) {
     } else {
         std::cout << numToFind << " was found at position: " << pos << std::endl;
     }
+    seconds = end - start;
+    std::cout << "Time taken for O(pos): " << seconds.count();
     return 0;
 }
 
