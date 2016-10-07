@@ -35,9 +35,9 @@ int main(int argc, const char * argv[]) {
     pos = findFirstOn(randArray, numToFind, arraySize);
     end = std::chrono::system_clock::now();
     if(pos == arraySize) {
-        std::cout << numToFind << " was not found in the array";
+        std::cout << numToFind << " was not found in the array" << std::endl;
     } else {
-        std::cout << numToFind << " was found at position: " << pos;
+        std::cout << numToFind << " was found at position: " << pos << std::endl;
     }
     
     end = std::chrono::system_clock::now();
@@ -48,9 +48,9 @@ int main(int argc, const char * argv[]) {
     pos = findFirstOPos(randArray, numToFind, arraySize);
     end = std::chrono::system_clock::now();
     if(pos == arraySize) {
-        std::cout << numToFind << " was not found in the array";
+        std::cout << numToFind << " was not found in the array" << std::endl;
     } else {
-        std::cout << numToFind << " was found at position: " << pos;
+        std::cout << numToFind << " was found at position: " << pos << std::endl;
     }
 }
 

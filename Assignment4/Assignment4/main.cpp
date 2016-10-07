@@ -23,20 +23,20 @@ int main(int argc, const char * argv[]) {
     omp_set_num_threads(numThreads);
     
 #pragma omp parallel for schedule(runtime)
-    {
+    
         for(int i = 0; i < arraySize; i++) {
             randArray[i] = rand();
         }
-    }
+    
     
     std::chrono::time_point<std::chrono::system_clock> start, end;
     start = std::chrono::system_clock::now();
 #pragma omp parallel for schedule(runtime)
-    {
+    
         for(int i = 0; i < arraySize; i++) {
             randArray[i] = sqrt(randArray[i]);
         }
-    }
+    
 
     end = std::chrono::system_clock::now();
     std::chrono::duration<double> seconds = end - start;
@@ -46,13 +46,13 @@ int main(int argc, const char * argv[]) {
     start = std::chrono::system_clock::now();
     
 #pragma omp parallel for reduction(min:minimum) schedule(runtime)
-    {
+    
         int minimum = randArray[0];
         for(int i = 0; i < arraySize; i++) {
             if(randArray[i] < minimum)
                 minimum = randArray[i];
         }
-    }
+    
     
     end = std::chrono::system_clock::now();
     seconds = end - start;
