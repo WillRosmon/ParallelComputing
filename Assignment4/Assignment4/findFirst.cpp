@@ -2,7 +2,7 @@
 //  findFirst.cpp
 //  Assignment4
 //
-//  Created by William Rosmon on 10/6/16.
+//  Created by William Rosmon on 10/3/16.
 //  Copyright © 2016 William Rosmon. All rights reserved.
 //
 
@@ -34,6 +34,8 @@ int main(int argc, const char * argv[]) {
     int pos = arraySize;
     pos = findFirstOn(randArray, numToFind, arraySize);
     end = std::chrono::system_clock::now();
+    //pos is assigned to the array size since it is out of bounds, I can easily tell if
+    //the number was found
     if(pos == arraySize) {
         std::cout << numToFind << " was not found in the array" << std::endl;
     } else {
@@ -52,8 +54,10 @@ int main(int argc, const char * argv[]) {
     } else {
         std::cout << numToFind << " was found at position: " << pos << std::endl;
     }
+    return 0;
 }
 
+//findFirst in O(n) time
 int findFirstOn (int array[], int numToFind, int size) {
     int pos = size;
 #pragma omp parallel for schedule(guided)
@@ -64,14 +68,16 @@ int findFirstOn (int array[], int numToFind, int size) {
     
     return pos;
 }
-
+//findFirst in O(pos) time
 int findFirstOPos(int array[], int numToFind, int size) {
     int pos = size;
 #pragma omp parallel for schedule(dynamic)
         for(int i = 0; i < size; i++) {
             if(array[i] == numToFind) {
-                pos = i;
-                i = size;
+                if(i < pos) {
+                    pos = i;
+                    i = size; //Everything else I tried gave me a compile error
+                }
             }
         }
     return pos;

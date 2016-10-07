@@ -1,8 +1,7 @@
 //
 //  prefixSum.cpp
 //  Assignment4
-//
-//  Created by William Rosmon on 10/6/16.
+//  Created by William Rosmon on 10/3/16.
 //  Copyright © 2016 William Rosmon. All rights reserved.
 //
 
@@ -37,21 +36,23 @@ int main(int argc, const char * argv[]) {
         
 #pragma omp for schedule(guided)
         
+        //Assign random values to random array and prefix sum array
             for(int i = 0; i < arraySize; i++) {
                 randArray[i] = rand() % arraySize;
-                prefixSum[i] = 0;
+                prefixSum[i] = randArray[i];
             }
         
         
-        
+        //start timer
         start = std::chrono::system_clock::now();
 #pragma omp for schedule(static)
+        //use static scheduler to know where each thread stopped
             for(int i = 0; i < arraySize; i++) {
                 prefixSum[i] = prefixSum[i-1] + randArray[i];
             }
         
 #pragma omp for schedule(static)
-        
+        //get values for last positions
             for(int i = 0; i < numThreads; i++) {
                 lastPositionValues[i] = prefixSum[lastPositions[i]];
             }
@@ -59,7 +60,7 @@ int main(int argc, const char * argv[]) {
     
     
 #pragma omp for schedule(static)
-    
+    //add last position values to every slot after
         for(int i = 0; i < numThreads; i++) {
             for(int j = lastPositions[i]; j < arraySize; i++) {
                 prefixSum[j] += lastPositionValues[i];
