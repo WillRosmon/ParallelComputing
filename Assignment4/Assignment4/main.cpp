@@ -44,10 +44,11 @@ int main(int argc, const char * argv[]) {
     std::cout << "Square Root Time Elapsed: " << seconds.count();
     
     start = std::chrono::system_clock::now();
+    int minimum = randArray[0];
     
 #pragma omp parallel for reduction(min:minimum) schedule(runtime)
     
-        int minimum = randArray[0];
+
         for(int i = 0; i < arraySize; i++) {
             if(randArray[i] < minimum)
                 minimum = randArray[i];
