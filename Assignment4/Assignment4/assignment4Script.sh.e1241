@@ -1,0 +1,5 @@
+/var/spool/torque/mom_priv/jobs/1241.mba-m1.uncc.edu.SC: line 19: 192459 Segmentation fault      (core dumped) ./a.out 1000000 1
+/var/spool/torque/mom_priv/jobs/1241.mba-m1.uncc.edu.SC: line 20: 192461 Segmentation fault      (core dumped) ./a.out 1000000 2
+/var/spool/torque/mom_priv/jobs/1241.mba-m1.uncc.edu.SC: line 21: 192464 Segmentation fault      (core dumped) ./a.out 1000000 4
+/var/spool/torque/mom_priv/jobs/1241.mba-m1.uncc.edu.SC: line 22: 192469 Segmentation fault      (core dumped) ./a.out 1000000 8
+/var/spool/torque/mom_priv/jobs/1241.mba-m1.uncc.edu.SC: line 23: 192478 Segmentation fault      (core dumped) ./a.out 1000000 16

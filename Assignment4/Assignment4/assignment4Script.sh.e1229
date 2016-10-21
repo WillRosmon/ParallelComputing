@@ -1,0 +1,30 @@
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 12: 189754 Segmentation fault      (core dumped) ./a.out 100000000 5000 1
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 13: 189756 Segmentation fault      (core dumped) ./a.out 100000000 5000 2
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 14: 189758 Segmentation fault      (core dumped) ./a.out 100000000 5000 4
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 15: 189760 Segmentation fault      (core dumped) ./a.out 100000000 5000 8
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 16: 189762 Segmentation fault      (core dumped) ./a.out 100000000 5000 16
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 19: 189769 Segmentation fault      (core dumped) ./a.out 1000000000 1
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 20: 189771 Segmentation fault      (core dumped) ./a.out 1000000000 2
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 21: 189773 Segmentation fault      (core dumped) ./a.out 1000000000 4
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 22: 189775 Segmentation fault      (core dumped) ./a.out 1000000000 8
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 23: 189777 Segmentation fault      (core dumped) ./a.out 1000000000 16
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 48: 190322 Segmentation fault      (core dumped) OMP_SCHEDULE="static" ./a.out 100000000 1
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 49: 190324 Segmentation fault      (core dumped) OMP_SCHEDULE="static" ./a.out 100000000 2
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 50: 190326 Segmentation fault      (core dumped) OMP_SCHEDULE="static" ./a.out 100000000 4
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 51: 190328 Segmentation fault      (core dumped) OMP_SCHEDULE="static" ./a.out 100000000 8
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 52: 190330 Segmentation fault      (core dumped) OMP_SCHEDULE="static" ./a.out 100000000 16
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 53: 190332 Segmentation fault      (core dumped) OMP_SCHEDULE="dynamic,1" ./a.out 100000000 1
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 54: 190334 Segmentation fault      (core dumped) OMP_SCHEDULE="dynamic,1" ./a.out 100000000 2
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 55: 190336 Segmentation fault      (core dumped) OMP_SCHEDULE="dynamic,1" ./a.out 100000000 4
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 56: 190338 Segmentation fault      (core dumped) OMP_SCHEDULE="dynamic,1" ./a.out 100000000 8
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 57: 190340 Segmentation fault      (core dumped) OMP_SCHEDULE="dynamic,1" ./a.out 100000000 16
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 58: 190342 Segmentation fault      (core dumped) OMP_SCHEDULE="dynamic,1000" ./a.out 100000000 1
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 59: 190344 Segmentation fault      (core dumped) OMP_SCHEDULE="dynamic,1000" ./a.out 100000000 2
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 60: 190346 Segmentation fault      (core dumped) OMP_SCHEDULE="dynamic,1000" ./a.out 100000000 4
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 61: 190348 Segmentation fault      (core dumped) OMP_SCHEDULE="dynamic,1000" ./a.out 100000000 8
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 62: 190350 Segmentation fault      (core dumped) OMP_SCHEDULE="dynamic,1000" ./a.out 100000000 16
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 63: 190352 Segmentation fault      (core dumped) OMP_SCHEDULE="dynamic,10000" ./a.out 100000000 1
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 64: 190354 Segmentation fault      (core dumped) OMP_SCHEDULE="dynamic,10000" ./a.out 100000000 2
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 65: 190356 Segmentation fault      (core dumped) OMP_SCHEDULE="dynamic,10000" ./a.out 100000000 4
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 66: 190358 Segmentation fault      (core dumped) OMP_SCHEDULE="dynamic,10000" ./a.out 100000000 8
+/var/spool/torque/mom_priv/jobs/1229.mba-m1.uncc.edu.SC: line 67: 190360 Segmentation fault      (core dumped) OMP_SCHEDULE="dynamic,10000" ./a.out 100000000 16

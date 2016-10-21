@@ -1,0 +1,1 @@
+/var/spool/torque/mom_priv/jobs/1238.mba-m1.uncc.edu.SC: line 3: 192121 Segmentation fault      (core dumped) ./a.out 100000000 5000 1
