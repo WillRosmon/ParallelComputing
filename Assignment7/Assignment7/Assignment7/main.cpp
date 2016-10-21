@@ -10,7 +10,7 @@
 #include <unistd.h>
 #include <mpi.h>
 
-int main(int argc, const char * argv[]) {
+int main(int argc, char * argv[]) {
     
     int rank, size;
     int hostNameSize = 1024;
