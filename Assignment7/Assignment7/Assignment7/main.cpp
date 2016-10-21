@@ -31,5 +31,7 @@ int main(int argc, char * argv[]) {
     
     std::cout << "Rank is: " << rank << std::endl;
     
+    MPI_Finalize();
+    
     return 0;
 }
