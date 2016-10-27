@@ -38,6 +38,9 @@ int main(int argc, char * argv[]) {
         }
     }
     
+    if(rank == 0) {
+        std::cout << "Static integration results: " << sol << std::endl;
+    }
     MPI_FINALIZE();
 }
 
