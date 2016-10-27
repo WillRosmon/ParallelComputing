@@ -37,7 +37,7 @@ double function(double a, double b, int n) {
     double sol = 0;
     
 #pragma omp parallel for schedule(runtime)
-    //perfoem the integration
+    //perform the integration
         for(int i = 0; i < n; i++) {
             double inside = (a + i * ( ( b - a ) / n ) ) ;
             sol += f(inside) * ( ( b - a) / n );

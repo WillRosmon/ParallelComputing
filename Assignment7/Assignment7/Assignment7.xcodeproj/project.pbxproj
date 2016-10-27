@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9A6ED50E1DB9988A00DEA13D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6ED50D1DB9988A00DEA13D /* main.cpp */; };
+		9A6ED5161DC2BA6900DEA13D /* staticIntegration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6ED5151DC2BA6900DEA13D /* staticIntegration.cpp */; };
+		9A6ED5181DC2C29E00DEA13D /* masterWorkerIntegration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6ED5171DC2C29E00DEA13D /* masterWorkerIntegration.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,6 +28,8 @@
 		9A6ED50A1DB9988A00DEA13D /* Assignment7 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Assignment7; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A6ED50D1DB9988A00DEA13D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		9A6ED5141DB9A1E400DEA13D /* script.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = script.sh; sourceTree = "<group>"; };
+		9A6ED5151DC2BA6900DEA13D /* staticIntegration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = staticIntegration.cpp; sourceTree = "<group>"; };
+		9A6ED5171DC2C29E00DEA13D /* masterWorkerIntegration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = masterWorkerIntegration.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 			children = (
 				9A6ED50D1DB9988A00DEA13D /* main.cpp */,
 				9A6ED5141DB9A1E400DEA13D /* script.sh */,
+				9A6ED5151DC2BA6900DEA13D /* staticIntegration.cpp */,
+				9A6ED5171DC2C29E00DEA13D /* masterWorkerIntegration.cpp */,
 			);
 			path = Assignment7;
 			sourceTree = "<group>";
@@ -120,6 +126,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A6ED5181DC2C29E00DEA13D /* masterWorkerIntegration.cpp in Sources */,
+				9A6ED5161DC2BA6900DEA13D /* staticIntegration.cpp in Sources */,
 				9A6ED50E1DB9988A00DEA13D /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
