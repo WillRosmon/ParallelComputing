@@ -21,21 +21,33 @@ int main(int argc, char * argv[]) {
     int rank, size;
     double buff;
     double sol = 0;
+    MPI_Status status;
     MPI_Init(&argc, &argv);
     
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
     
     if(rank == 0) {
+        for(int i = 0; i < size; i++) {
+            MPI_ISend(i, 1, MPI_INT, i, 0, MPI_COMM_WORLD, 0);
+        }
+        
+        while(i <= size) {
+            MPI_Recv(buff, 1, MPI_DOUBLE, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, &status);
+            MPI_ISend(i++, 1, MPI_INT, status.MPI_SOURCE, 0, MPI_COMM_WORLD, 0);
+            sol += buff;
+        }
+        for(int i = 0; i < size; i++) {
+            MPI_ISend(-1, 1, MPI_INT, i, 0, MPI_COMM_WORLD, 0);
+        }
+        
         
     } else {
-        
-    }
-    
-    if(rank  == 0) {
-        for(int i = 0; i < size; i++) {
-            MPI_RECV(buff, 1, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-            sol += buff;
+        int b = 0;
+        while(b != -1){
+            MPI_Recv(b, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, &status);
+            sol = function(a, b, numPoints, b, b);
+            MPI_ISend(sol, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, 0);
         }
     }
     
@@ -45,4 +57,19 @@ int main(int argc, char * argv[]) {
     
     MPI_FINALIZE();
     return 0;
+}
+
+double function(double a, double b, int n, int start, int end) {
+    //perform the integration
+    for(int i = start; i <= end; i++) {
+        
+        double inside = (a + i * ( ( b - a ) / n ) ) ;
+        sol += f(inside) * ( ( b - a) / n );
+    }
+    
+    return sol;
+}
+
+double f(double a) {
+    return 1;
 }
