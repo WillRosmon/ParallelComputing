@@ -21,7 +21,7 @@ int main(int argc, char * argv[]) {
     
     int rank, size;
     double buff;
-    double sol;
+    double sol = 0;
     MPI_Init(&argc, &argv);
     
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
@@ -50,6 +50,8 @@ int main(int argc, char * argv[]) {
         std::cout << "Integration Results: " << sol << std::endl;
     }
     MPI_FINALIZE();
+    
+    return 0;
 }
 
 
