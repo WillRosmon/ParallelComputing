@@ -47,7 +47,7 @@ int main(int argc, char * argv[]) {
         while(b != -1){
             MPI_Recv(b, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, &status);
             sol = function(a, b, numPoints, b, b);
-            MPI_ISend(sol, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, 0);
+            MPI_Send(sol, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, 0);
         }
     }
     
