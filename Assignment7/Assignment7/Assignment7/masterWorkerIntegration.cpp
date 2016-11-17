@@ -37,10 +37,10 @@ int main(int argc, char * argv[]) {
             b[1] = end;
             MPI_Send(b, 2, MPI_INT, i, 0, MPI_COMM_WORLD);
         }
-        for(int i = 1; i < size; i++) {
-            MPI_Recv((void*)&buff, 1, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-            sol += (int)buff;
-        }
+//        for(int i = 1; i < size; i++) {
+//            MPI_Recv((void*)&buff, 1, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+//            sol += (int)buff;
+//        }
         } else {
             int bu[2];
             MPI_Recv((void*)&b, 2, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
