@@ -15,9 +15,9 @@ double f(double);
 
 
 int main(int argc, char * argv[]) {
-    double a = std::atof(argv[1]);
-    double b = std::atof(argv[2]);
-    int numPoints = std::atoi(argv[3]);
+    double a = atof(argv[1]);
+    double b = atof(argv[2]);
+    int numPoints = atoi(argv[3]);
     
     int rank, size;
     double buff;
@@ -30,10 +30,10 @@ int main(int argc, char * argv[]) {
     double sol = function(a, b, numPoints, rank, size);
     
     if(rank != 0) {
-        MPI_SEND(sol, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
+        MPI_Send(sol, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
     } else {
         for(int i = 1; i < size; i++) {
-            MPI_RECV(buff, 1, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            MPI_Recv(buff, 1, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
             sol += buff;
         }
     }
