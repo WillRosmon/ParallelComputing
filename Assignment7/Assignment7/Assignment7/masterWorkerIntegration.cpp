@@ -39,7 +39,7 @@ int main(int argc, char * argv[]) {
         }
         for(int i = 1; i < size; i++) {
             MPI_Recv((void*)&buff, 1, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-            sol += buff;
+            sol += (int)buff;
         }
         } else {
             int bu[2];
