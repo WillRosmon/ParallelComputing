@@ -22,6 +22,7 @@ int main(int argc, char * argv[]) {
     
     int rank, size;
     double buff;
+    double* buffPtr = &buff;
     
     MPI_Init(&argc, &argv);
     
@@ -29,13 +30,14 @@ int main(int argc, char * argv[]) {
     MPI_Comm_size(MPI_COMM_WORLD, &size);
     
     double sol = function(a, b, numPoints, rank, size);
+    double* solPtr = &sol;
     
     if(rank != 0) {
-        MPI_Send((void*)sol, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
+        MPI_Send((void*)solPtr, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
     } else {
         for(int i = 1; i < size; i++) {
-            MPI_Recv((void*)buff, 1, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-            sol += (double)buff;
+            MPI_Recv((void*)buffPtr, 1, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            sol += buff;
         }
     }
     
