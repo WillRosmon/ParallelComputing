@@ -31,11 +31,11 @@ int main(int argc, char * argv[]) {
     double sol = function(a, b, numPoints, rank, size);
     
     if(rank != 0) {
-        MPI_Send(sol, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
+        MPI_Send((void*)sol, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
     } else {
         for(int i = 1; i < size; i++) {
-            MPI_Recv(buff, 1, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-            sol += buff;
+            MPI_Recv((void*)buff, 1, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            sol += (double)buff;
         }
     }
     
