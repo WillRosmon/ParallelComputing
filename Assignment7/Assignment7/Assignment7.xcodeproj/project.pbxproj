@@ -32,6 +32,7 @@
 		9A6ED5151DC2BA6900DEA13D /* staticIntegration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = staticIntegration.cpp; sourceTree = "<group>"; };
 		9A6ED5171DC2C29E00DEA13D /* masterWorkerIntegration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = masterWorkerIntegration.cpp; sourceTree = "<group>"; };
 		9A6ED5191DC2CB3E00DEA13D /* advancedMasterWorker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = advancedMasterWorker.cpp; sourceTree = "<group>"; };
+		9A6ED51B1DDE6A3C00DEA13D /* ScriptCompileOnly.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ScriptCompileOnly.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +70,7 @@
 				9A6ED5151DC2BA6900DEA13D /* staticIntegration.cpp */,
 				9A6ED5191DC2CB3E00DEA13D /* advancedMasterWorker.cpp */,
 				9A6ED5171DC2C29E00DEA13D /* masterWorkerIntegration.cpp */,
+				9A6ED51B1DDE6A3C00DEA13D /* ScriptCompileOnly.sh */,
 			);
 			path = Assignment7;
 			sourceTree = "<group>";
