@@ -15,9 +15,9 @@ double f(double);
 
 
 int main(int argc, char * argv[]) {
-    double a = atof(argv[1]);
-    double b = atof(argv[2]);
-    int numPoints = atoi(argv[3]);
+    double a = std::atof(argv[1]);
+    double b = std::atof(argv[2]);
+    int numPoints = std::atoi(argv[3]);
     
     int rank, size;
     double buff;
@@ -41,7 +41,7 @@ int main(int argc, char * argv[]) {
     if(rank == 0) {
         std::cout << "Static integration results: " << sol << std::endl;
     }
-    MPI_FINALIZE();
+    MPI_Finalize();
     
     return 0;
 }
