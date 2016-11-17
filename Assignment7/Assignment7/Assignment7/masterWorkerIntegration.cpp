@@ -43,9 +43,9 @@ int main(int argc, char * argv[]) {
         }
         } else {
             int bu[2];
-            MPI_Recv(b, 2, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            MPI_Recv((void*)&b, 2, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
             sol = function(a, b, numPoints, bu[0], bu[1]);
-            MPI_Send(sol, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
+            MPI_Send((void*)&sol, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
         }
     if(rank == 0) {
         std::cout << "Integration Results: " << sol << std::endl;
@@ -58,6 +58,7 @@ int main(int argc, char * argv[]) {
 
 double function(double a, double b, int n, int start, int end) {
     //perform the integration
+    int sol = 0;
     for(int i = start; i <= end; i++) {
         
         double inside = (a + i * ( ( b - a ) / n ) ) ;
