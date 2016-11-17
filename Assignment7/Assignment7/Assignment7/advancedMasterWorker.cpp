@@ -9,6 +9,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <mpi.h>
+#include <stdlib.h>
 
 double function(double, double, int, int, int);
 double f(double);
@@ -55,7 +56,7 @@ int main(int argc, char * argv[]) {
         std::cout << "Advanced Master Worker Integration Results: " << sol << std::endl;
     }
     
-    MPI_FINALIZE();
+    MPI_Finalize();
     return 0;
 }
 
