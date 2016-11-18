@@ -74,7 +74,7 @@ void master(double a, double b, int numPoints, double sol) {
     }
     
     for(rank = 1; rank < size; rank++) {
-        MPI_Send((void*)-1, 1, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD);
+        MPI_Send(-1, 1, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD);
     }
 }
 

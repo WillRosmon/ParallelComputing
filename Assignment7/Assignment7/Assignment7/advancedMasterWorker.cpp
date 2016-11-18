@@ -13,6 +13,7 @@
 
 double function(double, double, int, int, int);
 double f(double);
+master(double, double, int);
 
 int main(int argc, char * argv[]) {
     double a = atof(argv[1]);
@@ -42,6 +43,7 @@ int main(int argc, char * argv[]) {
             MPI_ISend(-1, 1, MPI_INT, i, 0, MPI_COMM_WORLD, 0);
         }
         
+        master(a, b, numPoints);
         
     } else {
         int b = 0;
@@ -58,6 +60,19 @@ int main(int argc, char * argv[]) {
     
     MPI_Finalize();
     return 0;
+}
+
+double master(double a, double b, int numPoints) {
+    MPI_Status status;
+    int rank = 1;
+    double work = a;
+    double pointIncrement = (b - a) / numPoints;
+    double partialSolution;
+    int size;
+    
+    MPI_COMM_size(MPI_COMM_WORLD, &size);
+    
+    
 }
 
 double function(double a, double b, int n, int start, int end) {
