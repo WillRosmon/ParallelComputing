@@ -29,7 +29,7 @@ int main(int argc, char * argv[]) {
     
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     if(rank == 0) {
-        master(a, b, numPoints, &sol);
+        master(a, b, numPoints, sol);
     } else {
         worker();
     }
