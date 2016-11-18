@@ -31,7 +31,7 @@ int main(int argc, char * argv[]) {
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
     
-    double sol = function(a, b, numPoints, rank, size);
+    double sol = 0;
     double* solPtr = &sol;
     
     if(rank != 0) {
