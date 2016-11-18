@@ -34,7 +34,7 @@ int main(int argc, char * argv[]) {
         worker();
     }
     if(rank == 0) {
-        std::cout << "Integration Results: " << sol << std::endl;
+        std::cout << "Master Worker Integration Results: " << sol << std::endl;
     }
     MPI_Finalize();
     
@@ -53,7 +53,7 @@ void master(double a, double b, int numPoints, double sol) {
     
     for(rank = 1; rank < size; rank++) {
         if(work <= b) {
-            MPI_Send((void*)&work, 1, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD);
+            MPI_Send(&work, 1, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD);
             work += pointIncrement;
         }
     }
@@ -74,7 +74,7 @@ void master(double a, double b, int numPoints, double sol) {
     }
     
     for(rank = 1; rank < size; rank++) {
-        MPI_Send((void*)-1, 1, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD);
+        MPI_Send((double*)-1, 1, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD);
     }
 }
 
