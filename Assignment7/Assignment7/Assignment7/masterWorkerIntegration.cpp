@@ -85,7 +85,9 @@ void worker() {
     double partialSolution = 0;
     double work;
     MPI_Status status;
-    
+    int rank;
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    std::cout << "Rank " << rank << " in worker method\n";
     MPI_Recv(&work, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, &status);
     
     if((double)work == -1) {
