@@ -106,7 +106,9 @@ double function(double a, double b, int n) {
         double inside = (a + i * ( ( b - a ) / n ) ) ;
         sol += f(inside) * ( ( b - a) / n );
     }
-    
+    int rank;
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    std::cout << "rank " << rank << "got " << sol << "as a result\n";
     return sol;
 }
 
