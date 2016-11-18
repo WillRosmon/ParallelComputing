@@ -59,9 +59,8 @@ void master(double a, double b, int numPoints, double sol) {
             work += pointIncrement;
         }
     }
-    
+    std::cout << "Sent all intiial working sets";
     while(work <= b) {
-        std::cout << "Entering main loop";
         MPI_Recv(&partialSolution, 1, MPI_DOUBLE, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, &status);
         sol += partialSolution;
         work += pointIncrement;
