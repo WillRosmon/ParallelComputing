@@ -96,6 +96,7 @@ void worker() {
         return;
     } else {
         partialSolution = function((double)work, (double)work + 1, 1);
+        std::cout << "rank " << rank << " sending " << partialSolution << " to rank 0\n";
         MPI_Send(&partialSolution, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
     }
 }
