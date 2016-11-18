@@ -28,6 +28,7 @@ int main(int argc, char * argv[]) {
     MPI_Init(&argc, &argv);
     
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    std::cout << "rank " << rank << " initialized\n";
     if(rank == 0) {
         master(a, b, numPoints, sol);
     } else {
@@ -42,6 +43,7 @@ int main(int argc, char * argv[]) {
 }
 
 void master(double a, double b, int numPoints, double sol) {
+    std::cout << "Master Process initialized" << std::endl;
     int size;
     double work = a;
     double pointIncrement = (b - a) / numPoints;
@@ -79,6 +81,7 @@ void master(double a, double b, int numPoints, double sol) {
 }
 
 void worker() {
+    
     double partialSolution = 0;
     double work;
     MPI_Status status;
