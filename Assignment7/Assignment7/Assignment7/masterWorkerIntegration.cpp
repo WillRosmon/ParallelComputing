@@ -44,7 +44,7 @@ int main(int argc, char * argv[]) {
 void master(double a, double b, int numPoints, double sol) {
     int size;
     double work = a;
-    double pointIncrement = a / numPoints;
+    double pointIncrement = (b - a) / numPoints;
     int rank = 1;
     double partialSolution = 0;
     MPI_Status status;
