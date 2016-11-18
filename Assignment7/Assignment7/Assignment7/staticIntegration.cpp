@@ -39,6 +39,7 @@ int main(int argc, char * argv[]) {
         MPI_Send(&sol, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
     } else {
         for(int i = 1; i < size; i++) {
+            std::cout << "Rank 1 initialized" << std::endl;
             MPI_Recv(&buff, 1, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, &status);
             sol += buff;
         }
