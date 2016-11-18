@@ -8,7 +8,7 @@
 
 #include <iostream>
 #include <unistd.h>
-#include "mpi.h"
+#include <mpi.h>
 #include <stdlib.h>
 
 double function(double, double, int, int, int);
