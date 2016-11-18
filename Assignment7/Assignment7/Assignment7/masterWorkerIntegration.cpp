@@ -13,7 +13,7 @@
 
 double function(double, double, int);
 double f(double);
-void master(double, double, int, double*);
+void master(double, double, int, double);
 void worker();
 
 
@@ -41,7 +41,7 @@ int main(int argc, char * argv[]) {
     return 0;
 }
 
-void master(double a, double b, int numPoints, double* sol) {
+void master(double a, double b, int numPoints, double sol) {
     int size;
     double work = a;
     double pointIncrement = a / numPoints;
@@ -67,18 +67,19 @@ void master(double a, double b, int numPoints, double* sol) {
         }
     }
     
-    for(rank = 1, rank < size, rank++) {
+    for(rank = 1; rank < size; rank++) {
         MPI_Recv(&partialSolution, 1, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD);
         sol += partialSolution;
     }
     
-    for(rank = 1; rank < size, rank++) {
+    for(rank = 1; rank < size; rank++) {
         MPI_Send((void*)-1, 1, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD);
     }
 }
 
 void worker() {
     double partialSolution = 0;
+    duble work;
     
     MPI_Recv(&work, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, &status);
     MPI_Status status;
