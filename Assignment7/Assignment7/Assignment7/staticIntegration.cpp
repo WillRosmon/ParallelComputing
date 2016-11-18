@@ -46,6 +46,7 @@ int main(int argc, char * argv[]) {
         
         for(int i = 1; i < size; i++) {
             MPI_Recv(&buff, 1, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, &status);
+            std::cout << "received " << buff << " from " << status.MPI_SOURCE << std::endl;
             sol += buff;
         }
     }
