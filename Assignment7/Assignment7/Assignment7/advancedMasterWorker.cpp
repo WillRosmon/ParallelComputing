@@ -50,7 +50,7 @@ int main(int argc, char * argv[]) {
         while(b != -1){
             MPI_Recv(b, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, &status);
             sol = function(a, b, numPoints, b, b);
-            MPI_Send(sol, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, 0);
+            MPI_ISend(sol, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, 0);
         }
     }
     
@@ -69,8 +69,18 @@ double master(double a, double b, int numPoints) {
     double pointIncrement = (b - a) / numPoints;
     double partialSolution;
     int size;
+    double initialbuffer[3];
     
     MPI_COMM_size(MPI_COMM_WORLD, &size);
+    
+    for(rank = 1; rank < size; rank++) {
+        for(int i = 0; i < 3 && work < b; i++) {
+            buffer[0] = work;
+            work += pointIncrement;
+        }
+        
+        MPI_Send(&initialbuffer, 3, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD, )
+    }
     
     
 }
