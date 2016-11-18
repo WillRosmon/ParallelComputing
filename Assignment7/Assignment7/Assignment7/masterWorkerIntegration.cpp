@@ -64,6 +64,7 @@ void master(double a, double b, int numPoints, double sol) {
         work += pointIncrement;
         if(work <= b) {
             MPI_Send(&work, 1, MPI_DOUBLE, status.MPI_SOURCE, 0, MPI_COMM_WORLD);
+            work+= pointIncrement;
         }
     }
     
