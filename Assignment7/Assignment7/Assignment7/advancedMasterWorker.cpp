@@ -13,7 +13,7 @@
 
 double function(double, double, int, int, int);
 double f(double);
-master(double, double, int);
+void master(double, double, int);
 
 int main(int argc, char * argv[]) {
     double a = atof(argv[1]);
@@ -31,7 +31,7 @@ int main(int argc, char * argv[]) {
     
     if(rank == 0) {
         for(int i = 0; i < size; i++) {
-            MPI_ISend(i, 1, MPI_INT, i, 0, MPI_COMM_WORLD, 0);
+            MPI_Isend(i, 1, MPI_INT, i, 0, MPI_COMM_WORLD, 0);
         }
         
         while(i <= size) {
@@ -43,7 +43,7 @@ int main(int argc, char * argv[]) {
             MPI_ISend(-1, 1, MPI_INT, i, 0, MPI_COMM_WORLD, 0);
         }
         
-        master(a, b, numPoints);
+        master(a, b, numPoints, sol);
         
     } else {
         int b = 0;
@@ -62,7 +62,7 @@ int main(int argc, char * argv[]) {
     return 0;
 }
 
-double master(double a, double b, int numPoints) {
+double master(double a, double b, int numPoints, double sol) {
     MPI_Status status;
     int rank = 1;
     double work = a;
@@ -70,16 +70,28 @@ double master(double a, double b, int numPoints) {
     double partialSolution;
     int size;
     double initialbuffer[3];
+
+    int nextRequest = 0;
     
     MPI_COMM_size(MPI_COMM_WORLD, &size);
+    MPI_Request request[size];
     
+    //Send initial 3 pieces of work to each process
     for(rank = 1; rank < size; rank++) {
         for(int i = 0; i < 3 && work < b; i++) {
             buffer[0] = work;
             work += pointIncrement;
         }
         
-        MPI_Send(&initialbuffer, 3, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD, )
+        MPI_Isend(&initialbuffer, 3, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD)
+    }
+    
+    while(work <= b) {
+        MPI_Recv(&partialSolution, 1, MPI_Double, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, &status);
+            sol += partialSum;
+            work += partialSolution;
+            MPI_Isend(&work, 1, MPI_DOUBLE, status.MPI_SOURCE, 0, MPI_COMM_WORLD, &request[status.MPI_SOURCE]);
+        }
     }
     
     

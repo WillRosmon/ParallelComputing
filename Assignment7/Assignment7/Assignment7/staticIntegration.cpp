@@ -8,7 +8,7 @@
 
 #include <iostream>
 #include <unistd.h>
-#include <mpi.h>
+#include "mpi.h"
 #include <stdlib.h>
 
 double function(double, double, int, int, int);
@@ -24,7 +24,9 @@ int main(int argc, char * argv[]) {
     double buff;
     double* buffPtr = &buff;
     
+    
     MPI_Init(&argc, &argv);
+    MPI_Status status;
     
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
@@ -36,7 +38,7 @@ int main(int argc, char * argv[]) {
         MPI_Send((void*)solPtr, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
     } else {
         for(int i = 1; i < size; i++) {
-            MPI_Recv((void*)buffPtr, 1, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            MPI_Recv((void*)buffPtr, 1, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, &status);
             sol += buff;
         }
     }

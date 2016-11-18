@@ -8,7 +8,7 @@
 
 #include <iostream>
 #include <unistd.h>
-#include <mpi.h>
+#include "mpi.h"
 #include <stdlib.h>
 
 double function(double, double, int);
@@ -69,7 +69,7 @@ void master(double a, double b, int numPoints, double sol) {
     }
     
     for(rank = 1; rank < size; rank++) {
-        MPI_Recv(&partialSolution, 1, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+        MPI_Recv(&partialSolution, 1, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD, &status);
         sol += partialSolution;
     }
     
