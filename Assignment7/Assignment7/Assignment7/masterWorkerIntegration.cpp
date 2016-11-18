@@ -52,17 +52,12 @@ void master(double a, double b, int numPoints, double sol) {
     MPI_Status status;
     
     MPI_Comm_size(MPI_COMM_WORLD, &size);
-    std::cout << "Size: " << size << std::endl;
-    for(rank = 1; rank < size; rank++) {
-        std::cout << "Value of B: " << b << std::endl;
-        std::cout << "attempting to send " << work << " to rank " << rank << std::endl;
-        if(work <= b) {
-            std::cout << "sending " << work << " to rank " << rank << std::endl;
-            MPI_Send(&work, 1, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD);
-            work += pointIncrement;
-        }
-        std::cout << (rank < size) << std::endl;
+    
+    for(rank = 1; rank < size && work <= b; rank++) {
+        MPI_Send(&work, 1, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD);
+        work += pointIncrement;
     }
+    
     std::cout << "Sent all intiial working sets";
     while(work <= b) {
         MPI_Recv(&partialSolution, 1, MPI_DOUBLE, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, &status);
@@ -96,7 +91,6 @@ void worker() {
         return;
     } else {
         partialSolution = function((double)work, (double)work + 1, 1);
-        std::cout << "rank " << rank << " sending " << partialSolution << " to rank 0\n";
         MPI_Send(&partialSolution, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
     }
 }
