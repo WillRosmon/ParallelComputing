@@ -80,6 +80,7 @@ void master(double a, double b, int numPoints, double sol) {
 void worker() {
     double partialSolution = 0;
     duble work;
+    MPI_Status status;
     
     MPI_Recv(&work, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, &status);
     MPI_Status status;
