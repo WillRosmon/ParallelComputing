@@ -62,6 +62,7 @@ void master(double a, double b, int numPoints, double sol) {
     
     while(work <= b) {
         MPI_Recv(&partialSolution, 1, MPI_DOUBLE, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, &status);
+        std::cout << "Master process received result from " << status.MPI_SOURCE;
         sol += partialSolution;
         work += pointIncrement;
         if(work <= b) {
@@ -88,7 +89,6 @@ void worker() {
     int rank;
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Recv(&work, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, &status);
-    std::cout << "rank " << rank << " received " << work << std::endl;
     if((double)work == -1) {
         return;
     } else {
