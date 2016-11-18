@@ -55,6 +55,7 @@ void master(double a, double b, int numPoints, double sol) {
     std::cout << "Size: " << size << std::endl;
     for(rank = 1; rank < size - 1; rank++) {
         if(work <= b) {
+            std::cout << "sending " << work << " to rank " << rank;
             MPI_Send(&work, 1, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD);
             work += pointIncrement;
         }
