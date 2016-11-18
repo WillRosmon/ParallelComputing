@@ -34,6 +34,7 @@ int main(int argc, char * argv[]) {
     
     if(rank != 0) {
         MPI_Recv(&buff, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, &status);
+        std::cout << "rank " << rank << " received " << buff << std::endl;
         sol = function(a, b, numPoints, rank, size);
         MPI_Send(&sol, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
     } else {
