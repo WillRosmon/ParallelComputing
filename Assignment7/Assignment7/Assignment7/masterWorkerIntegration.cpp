@@ -92,7 +92,7 @@ void worker() {
     if((double)work == -1) {
         return;
     } else {
-        partialSolution = function((double)work, (double)work, 1);
+        partialSolution = function((double)work, (double)work + 1, 1);
         MPI_Send(&partialSolution, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
     }
 }
@@ -101,7 +101,7 @@ void worker() {
 double function(double a, double b, int n) {
     //perform the integration
     double sol = 0;
-    for(int i = a; i <= b; i++) {
+    for(int i = a; i < b; i++) {
         
         double inside = (a + i * ( ( b - a ) / n ) ) ;
         sol += f(inside) * ( ( b - a) / n );
