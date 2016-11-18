@@ -52,7 +52,7 @@ void master(double a, double b, int numPoints, double sol) {
     MPI_Status status;
     
     MPI_Comm_size(MPI_COMM_WORLD, &size);
-    
+    std::cout << "Size: " << size << std::endl;
     for(rank = 1; rank < size; rank++) {
         if(work <= b) {
             MPI_Send(&work, 1, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD);
