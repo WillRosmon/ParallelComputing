@@ -61,7 +61,7 @@ void master(double a, double b, int numPoints, double sol) {
             MPI_Send(&work, 1, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD);
             work += pointIncrement;
         }
-        
+        std::cout << (rank < size);
     }
     std::cout << "Sent all intiial working sets";
     while(work <= b) {
