@@ -29,16 +29,13 @@ int main(int argc, char * argv[]) {
     
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
-    std::cout << "Initializing " << rank << std::endl;
     double sol = 0;
     
     if(rank != 0) {
         MPI_Recv(&buff, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, &status);
-        std::cout << "rank " << rank << " received " << buff << std::endl;
         sol = function(a, b, numPoints, rank, size);
         MPI_Send(&sol, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
     } else {
-        std::cout << "Rank 0 initialized" << std::endl;
         for(int i = 1; i < size; i++) {
             
             MPI_Send(&sol, 1, MPI_DOUBLE, i, 0, MPI_COMM_WORLD);
@@ -46,7 +43,6 @@ int main(int argc, char * argv[]) {
         
         for(int i = 1; i < size; i++) {
             MPI_Recv(&buff, 1, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, &status);
-            std::cout << "received " << buff << " from " << status.MPI_SOURCE << std::endl;
             sol += buff;
         }
     }
