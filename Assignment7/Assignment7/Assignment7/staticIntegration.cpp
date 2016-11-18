@@ -50,6 +50,7 @@ int main(int argc, char * argv[]) {
     }
     
     if(rank == 0) {
+        sol += function(a, b, numPoints, rank, size);
         std::cout << "Static integration results: " << sol << std::endl;
     }
     MPI_Finalize();
