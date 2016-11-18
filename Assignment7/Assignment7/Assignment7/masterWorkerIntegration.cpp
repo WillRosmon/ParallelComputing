@@ -11,8 +11,10 @@
 #include <mpi.h>
 #include <stdlib.h>
 
-double function(double, double, int, int, int);
+double function(double, double, int);
 double f(double);
+void master(double, double, int, double*);
+void worker();
 
 
 int main(int argc, char * argv[]) {
@@ -20,33 +22,17 @@ int main(int argc, char * argv[]) {
     double b = atof(argv[2]);
     int numPoints = atoi(argv[3]);
     
-    int rank, size;
+    int rank;
     double buff;
     double sol = 0;
     MPI_Init(&argc, &argv);
     
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-    MPI_Comm_size(MPI_COMM_WORLD, &size);
     if(rank == 0) {
-        for(int i = 0; i < size; i++) {
-            int start, end;
-            start = rank * (numPoints / size);
-            end = start + (numPoints / size) - 1;
-            int b[2];
-            b[0] = start;
-            b[1] = end;
-            MPI_Send(b, 2, MPI_INT, i, 0, MPI_COMM_WORLD);
-        }
-//        for(int i = 1; i < size; i++) {
-//            MPI_Recv((void*)&buff, 1, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-//            sol += (int)buff;
-//        }
-        } else {
-            int bu[2];
-            MPI_Recv((void*)&b, 2, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-            sol = function(a, b, numPoints, bu[0], bu[1]);
-            MPI_Send((void*)&sol, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
-        }
+        master(a, b, numPoints, &sol);
+    } else {
+        worker();
+    }
     if(rank == 0) {
         std::cout << "Integration Results: " << sol << std::endl;
     }
@@ -55,11 +41,60 @@ int main(int argc, char * argv[]) {
     return 0;
 }
 
+void master(double a, double b, int numPoints, double* sol) {
+    int size;
+    double work = a;
+    double pointIncrement = a / numPoints;
+    int rank = 1;
+    double partialSolution = 0;
+    MPI_STATUS status;
+    
+    MPI_Comm_Size(MPI_COMM_WORLD, &size);
+    
+    for(rank = 1; rank < size; rank++) {
+        if(work <= b) {
+            MPI_Send((void*)&work, 1, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD);
+            work += pointIncrement;
+        }
+    }
+    
+    while(work <= b) {
+        MPI_Recv(&partialSolution, 1, MPI_DOUBLE, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, &status);
+        sol += partialSolution;
+        work += pointIncrement;
+        if(work <= b) {
+            MPI_SEND(&work, 1, MPI_DOUBLE, status.MPI_SOURCE, 0, MPI_COMM_WORLD);
+        }
+    }
+    
+    for(rank = 1, rank < size, rank++) {
+        MPI_Recv(&partialSolution, 1, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD);
+        sol += partialSolution;
+    }
+    
+    for(rank = 1; rank < size, rank++) {
+        MPI_Send((void*)&-1, 1, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD);
+    }
+}
 
-double function(double a, double b, int n, int start, int end) {
+void worker() {
+    double partialSolution = 0;
+    
+    MPI_Recv(&work, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, &status);
+    MPI_Status status;
+    if(work == -1) {
+        return;
+    } else {
+        partialSolution = function(work, work, 1);
+        MPI_Send(&partialSolution, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD &status);
+    }
+}
+
+
+double function(double a, double b, int n) {
     //perform the integration
     double sol = 0;
-    for(int i = start; i <= end; i++) {
+    for(int i = a; i <= b; i++) {
         
         double inside = (a + i * ( ( b - a ) / n ) ) ;
         sol += f(inside) * ( ( b - a) / n );

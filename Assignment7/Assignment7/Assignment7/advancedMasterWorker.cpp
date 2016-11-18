@@ -62,6 +62,7 @@ int main(int argc, char * argv[]) {
 
 double function(double a, double b, int n, int start, int end) {
     //perform the integration
+    double sol = 0;
     for(int i = start; i <= end; i++) {
         
         double inside = (a + i * ( ( b - a ) / n ) ) ;
