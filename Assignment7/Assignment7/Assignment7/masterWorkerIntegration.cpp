@@ -74,7 +74,7 @@ void master(double a, double b, int numPoints, double sol) {
     }
     
     for(rank = 1; rank < size; rank++) {
-        MPI_Send(-1, 1, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD);
+        MPI_Send((void*)-1, 1, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD);
     }
 }
 
@@ -85,10 +85,10 @@ void worker() {
     
     MPI_Recv(&work, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, &status);
     
-    if(work == -1) {
+    if((double)work == -1) {
         return;
     } else {
-        partialSolution = function(work, work, 1);
+        partialSolution = function((double)work, (double)work, 1);
         MPI_Send(&partialSolution, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
     }
 }
