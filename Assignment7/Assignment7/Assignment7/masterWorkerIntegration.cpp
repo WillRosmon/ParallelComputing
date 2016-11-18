@@ -55,7 +55,7 @@ void master(double a, double b, int numPoints, double sol) {
     MPI_Request request[size];
     
     for(rank = 1; rank < size && work <= b; rank++) {
-        MPI_Isend(&work, 1, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD, request[i]);
+        MPI_Isend(&work, 1, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD, request[rank]);
         work += pointIncrement;
     }
     
