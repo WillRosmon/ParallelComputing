@@ -88,7 +88,7 @@ void worker() {
         return;
     } else {
         partialSolution = function(work, work, 1);
-        MPI_Send(&partialSolution, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD &status);
+        MPI_Send(&partialSolution, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, &status);
     }
 }
 
