@@ -68,7 +68,7 @@ void master(double a, double b, int numPoints, double sol) {
     }
     
     for(rank = 1; rank < size; rank++) {
-        MPI_Recv(&partialSolution, 1, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD);
+        MPI_Recv(&partialSolution, 1, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
         sol += partialSolution;
     }
     
@@ -79,11 +79,11 @@ void master(double a, double b, int numPoints, double sol) {
 
 void worker() {
     double partialSolution = 0;
-    duble work;
+    double work;
     MPI_Status status;
     
     MPI_Recv(&work, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, &status);
-    MPI_Status status;
+    
     if(work == -1) {
         return;
     } else {
