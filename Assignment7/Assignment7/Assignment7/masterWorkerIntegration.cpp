@@ -47,9 +47,9 @@ void master(double a, double b, int numPoints, double* sol) {
     double pointIncrement = a / numPoints;
     int rank = 1;
     double partialSolution = 0;
-    MPI_STATUS status;
+    MPI_Status status;
     
-    MPI_Comm_Size(MPI_COMM_WORLD, &size);
+    MPI_Comm_size(MPI_COMM_WORLD, &size);
     
     for(rank = 1; rank < size; rank++) {
         if(work <= b) {
@@ -63,7 +63,7 @@ void master(double a, double b, int numPoints, double* sol) {
         sol += partialSolution;
         work += pointIncrement;
         if(work <= b) {
-            MPI_SEND(&work, 1, MPI_DOUBLE, status.MPI_SOURCE, 0, MPI_COMM_WORLD);
+            MPI_Send(&work, 1, MPI_DOUBLE, status.MPI_SOURCE, 0, MPI_COMM_WORLD);
         }
     }
     
@@ -73,7 +73,7 @@ void master(double a, double b, int numPoints, double* sol) {
     }
     
     for(rank = 1; rank < size, rank++) {
-        MPI_Send((void*)&-1, 1, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD);
+        MPI_Send((void*)-1, 1, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD);
     }
 }
 
