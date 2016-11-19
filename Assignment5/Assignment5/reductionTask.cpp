@@ -56,12 +56,12 @@ int main(int argc, const char * argv[]) {
     randomArray = NULL;
 }
 
-//fill the array with values between 0 and 1-size
+//fill the array with values between 1 and size
 void fillArrayRandom(int* array, int size) {
     srand(time(NULL));
 #pragma omp parallel for schedule(runtime)
     for(int i = 0; i < size; i++) {
-        array[i] = rand() % size;
+        array[i] = (rand() % size) + 1;
     }
 }
 
