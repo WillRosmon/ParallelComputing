@@ -14,15 +14,15 @@ void findMin(int*, int, int, int*, int);
 
 #include <stdio.h>
 #include <iostream>
-#include <omp.h>
+//#include <omp.h>
 #include <stdlib.h>
 #include <ctime>
 #include <chrono>
 
-omp_lock_t minLock; //I'm honestly not sure if we needed to use this
+//omp_lock_t minLock; //I'm honestly not sure if we needed to use this
                     //I just felt it necessary for this assignment.
 
-int main(int argc, const char * argv[]) {
+int lmain(int argc, const char * argv[]) {
     
     int numThreads = atoi(argv[1]);
     int arraySize = atoi(argv[2]);
@@ -34,12 +34,12 @@ int main(int argc, const char * argv[]) {
         return 0;
     }
     
-    omp_set_num_threads(numThreads);
+    //omp_set_num_threads(numThreads);
     int* randomArray = new int[arraySize]; //Allocate the array to heap
                                            //because it is too large for the stack
     fillArrayRandom(randomArray, arraySize);
     
-    omp_init_lock(&minLock);  //Initialize the omp lock for the minimum variable
+    //omp_init_lock(&minLock);  //Initialize the omp lock for the minimum variable
     
     int minimum = randomArray[0]; //set min to first value in array
     std::chrono::time_point<std::chrono::system_clock> begin, end;
@@ -57,9 +57,11 @@ int main(int argc, const char * argv[]) {
     std::cout << " Granularity " << granularity << " num of Threads: " << numThreads << std::endl;
     
     //Clean up memory
-    omp_destroy_lock(&minLock);
+    //omp_destroy_lock(&minLock);
     delete[] randomArray;
     randomArray = NULL;
+    
+    return 0;
 }
 
 //fill the array with values between 1 and size
@@ -104,9 +106,9 @@ void findMin(int* array, int start, int end, int* min, int size) {
 }
 
 void newMin(int* minimum, int* newMin) {
-    omp_set_lock(&minLock); //make sure only one thread is updating the minimum at a time
+    //omp_set_lock(&minLock); //make sure only one thread is updating the minimum at a time
     if(*newMin < *minimum){
         *minimum =  *newMin;
     }
-    omp_unset_lock(&minLock); //unlock minimum to allow other threads to modify
+    //omp_unset_lock(&minLock); //unlock minimum to allow other threads to modify
 }

@@ -8,7 +8,7 @@
 
 #include <iostream>
 #include <ctime>
-#include <omp.h>
+//#include <omp.h>
 
 
 void fillArray(int*, int);
@@ -21,7 +21,7 @@ int main(int argc, const char * argv[]) {
     int arraySize = 1000;
     int randomArray[arraySize];
     
-    omp_set_num_threads(numThreads);
+    //omp_set_num_threads(numThreads);
     
     fillArray(randomArray, arraySize);
     int errorPosition = arraySize;
