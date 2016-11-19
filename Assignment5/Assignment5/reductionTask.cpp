@@ -6,7 +6,7 @@
 //  Copyright © 2016 William Rosmon. All rights reserved.
 //
 
-void mainTask(int*, int*);
+void mainTask(int*, int*, int, int);
 void fillArrayRandom(int*, int);
 void newMin(int, int*, int);
 void findMin(int*, int, int, int*);
@@ -38,7 +38,7 @@ int main(int argc, const char * argv[]) {
 #pragma omp parallel
     {
 #pragma omp single
-        mainTask(randomArray, &minumum, granularity);
+        mainTask(randomArray, &minumum, granularity, arraySize);
         std::cout << "Minimum: " << minumum << std::endl;
     }
     
@@ -65,7 +65,7 @@ void mainTask(int* array, int* minimum, int granularity, int size) {
             findMin(array, start, end, minimum);
         } else {
 #pragma omp task
-            findMin(array, start, size-1);
+            findMin(array, start, size-1, minimum);
         }
         start += granularity;
 #pragma omp taskwait
