@@ -36,7 +36,7 @@ int main(int argc, const char * argv[]) {
     omp_init_lock(&minLock);  //Initialize the omp lock for the minimum variable
     
     int minimum = randomArray[0]; //set min to first value in array
-    std::chrono::time_point begin, end;
+    std::chrono::time_point<std::chrono::system_clock> begin, end;
     begin = std::chrono::system_clock::now();
     //begin parallel portion
 #pragma omp parallel
