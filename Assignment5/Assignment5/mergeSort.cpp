@@ -76,10 +76,26 @@ void populateArray(int* array, int size) {
 void mainTask(int* array, int size) {
 #pragma omp task
     mergeSort(array, 0, size-1, size);
+#pragma omp taskwait
+    int numPieces = omp_get_num_threads();
+#pragma omp task
+    bool merged = false;
+    if(numPieces == 1)    {merged = true;}
+    while(!merged) {
+        numPieces /= 2;
+        int start = 0;
+        int increment = size / numPieces;
+        int end = start + increment;
+        for(int i = 0; i < numPieces; i++) {
+#pragma omp task
+            merge(array, start, end);
+        }
+#pragma omp taskwait
+    }
 }
 
 void mergeSort(int* array, int begin, int end, int size) {
-    if(size <= 2) {
+    if(size <= 2 || begin <= end) {
         std::cout << "Size of smallest piece: " << size;
         std::cout << "Beginning: " << begin << "Ending: " << end << std::endl;
         return merge(array, begin, end);
