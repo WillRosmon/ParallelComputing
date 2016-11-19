@@ -55,7 +55,7 @@ void fillArrayRandom(int* array, int size) {
 
 void mainTask(int* array, int* minimum, int granularity, int size) {
     int numTasks = 0;
-    numTasks = size / granularity
+    numTasks = size / granularity;
     int start = 0;
     int end = start + granularity;
 #pragma omp for schedule(runtime)
