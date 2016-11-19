@@ -9,7 +9,7 @@
 void mainTask(int*, int*, int, int);
 void fillArrayRandom(int*, int);
 void newMin(int*, int*);
-void findMin(int*, int, int, int*);
+void findMin(int*, int, int, int*, int);
 
 
 #include <stdio.h>
