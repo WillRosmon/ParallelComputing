@@ -78,7 +78,6 @@ void mainTask(int* array, int size) {
     mergeSort(array, 0, size-1, size);
 #pragma omp taskwait
     int numPieces = omp_get_num_threads();
-#pragma omp task
     bool merged = false;
     if(numPieces == 1)    {merged = true;}
     while(!merged) {
@@ -91,6 +90,11 @@ void mainTask(int* array, int size) {
             merge(array, start, end);
         }
 #pragma omp taskwait
+        start = end;
+        if(end += increment >= size - 1) {
+            end = size-1;
+        }
+        merged = end == (size-1);
     }
 }
 
