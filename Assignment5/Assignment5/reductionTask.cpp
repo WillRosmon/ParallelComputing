@@ -27,13 +27,13 @@ int main(int argc, const char * argv[]) {
     int numThreads = atoi(argv[1]);
     int arraySize = atoi(argv[2]);
     int granularity = atoi(argv[3]);
-    
+    omp_set_num_threads(numThreads);
     int* randomArray = new int[arraySize];
     fillArrayRandom(randomArray, arraySize);
     
     int minimum = randomArray[0];
     std::cout << "Initial Minimum: " << minimum << std::endl;
-    omp_set_num_threads(numThreads);
+    
     std::cout << "Number of threads: " << omp_get_num_threads();
 #pragma omp parallel
     {
