@@ -8,7 +8,7 @@
 
 void mainTask(int*, int*, int, int);
 void fillArrayRandom(int*, int);
-void newMin(int, int*, int);
+void newMin(int, int*);
 void findMin(int*, int, int, int*);
 
 
@@ -59,7 +59,7 @@ void mainTask(int* array, int* minimum, int granularity, int size) {
     int start = 0;
     int end = start + granularity;
 #pragma omp for schedule(runtime)
-    for(int i = 0; i < numTasks && end > start; i++) {
+    for(int i = 0; ((i < numTasks) && (end > start)); i++) {
         if(size > start + granularity) {
 #pragma omp task
             findMin(array, start, end, minimum);
