@@ -7,7 +7,7 @@
 //
 
 #include <iostream>
-//#include <omp.h>
+#include <omp.h>
 #include <ctime>
 #include <chrono>
 
@@ -19,7 +19,7 @@ int main(int argc, const char * argv[]) {
     int arraySize = atoi(argv[1]);
     int numThreads = atoi(argv[2]);
     
-    //omp_set_num_threads(numThreads);
+    omp_set_num_threads(numThreads);
     int randomArray[arraySize];
     fillArray(randomArray, arraySize);
     for(int i = 0; i < arraySize; i++) {

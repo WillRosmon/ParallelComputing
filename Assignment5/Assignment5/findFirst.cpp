@@ -8,7 +8,7 @@
 
 #include <iostream>
 #include <ctime>
-//#include <omp.h>
+#include <omp.h>
 
 
 void fillArray(int*, int);
@@ -24,7 +24,7 @@ int main(int argc, const char * argv[]) {
     int errorPosition = arraySize;
     int* minimumPosition = &errorPosition;
     
-//#pragma omp single
+#pragma omp single
     {
         mainTask(randomArray, arraySize, minimumPosition, searchNumber);
     }
@@ -34,18 +34,18 @@ int main(int argc, const char * argv[]) {
 
 void fillArray(int* array, int size) {
     srand(time(NULL));
-//#pragma omp parallel for schedule(guided)
+#pragma omp parallel for schedule(guided)
     for(int i = 0; i < size; i++) {
         array[i] = rand() % size;
     }
 }
 
 void mainTask(int* array, int size, int* firstPosition, int search) {
-//#pragma omp parallel
+#pragma omp parallel
     {
         findFirst(array, size, firstPosition, search);
     }
-//#pragma omp taskwait
+#pragma omp taskwait
     if(*firstPosition == size) {
         std::cout << search << " was not found in the array";
     } else {
