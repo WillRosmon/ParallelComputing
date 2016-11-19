@@ -13,8 +13,11 @@
 #include <ctime>
 #include <chrono>
 
-populateArray(int*, int);
-mainTask(int*);
+void populateArray(int*, int);
+void mainTask(int*, int);
+void mergeSort(int*, int, int, int);
+void merge(int*, int, int);
+void swap(int*, int*);
 
 int main(int argc, const char* argv[]) {
     int arraySize = atoi(argv[1]);
@@ -36,8 +39,11 @@ int main(int argc, const char* argv[]) {
 #pragma omp parallel
     {
 #pragma omp single
-        mainTask(randomArray);
+        mainTask(randomArray, arraySize);
     }
+    
+    //Debugging
+    for(int i = 0; i < )
     
     //calculate and print the run time
     end = std::chrono::system_clock::now();
@@ -59,14 +65,35 @@ void populateArray(int* array, int size) {
     }
 }
 
-void mainTask(int* array) {
-    
+void mainTask(int* array, int size) {
+#pragma omp task
+    mergeSort(array, 0, size-1, size);
 }
 
-void mergeSort(int* array, int begin, int end) {
-    
+void mergeSort(int* array, int begin, int end, int size) {
+    if(size <= 2) {
+        return merge(array, begin, end);
+    }
+    int sizeLeftHalf = size / 2;
+    int sizeRightHalf = size - sizeLeftHalf;
+    int midpoint = begin + sizeLeftHalf;
+    mergeSort(array, begin, midpoint, sizeLeftHalf);
+    mergeSort(array, midpoint + 1, end, sizeRightHalf);
 }
-
-void merge(int* a, int* b, int* sol) {
-    
+                     
+void merge(int* array, int begin, int end) {
+    if(end <= begin) {
+        return;
+    } else {
+        int a = begin;
+        int b = (begin + end) / 2;
+        
+        while (a < b && b < end) {
+            while(array[b] < array[a]) {
+                swap(&array[a], &array[b]);
+                b++;
+            }
+            a++;
+        }
+    }
 }
