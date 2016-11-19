@@ -20,6 +20,9 @@ int main(int argc, const char * argv[]) {
     int searchNumber = atoi(argv[2]);
     int arraySize = 1000;
     int randomArray[arraySize];
+    
+    omp_set_num_threads(numThreads);
+    
     fillArray(randomArray, arraySize);
     int errorPosition = arraySize;
     int* minimumPosition = &errorPosition;
@@ -34,7 +37,7 @@ int main(int argc, const char * argv[]) {
 
 void fillArray(int* array, int size) {
     srand(time(NULL));
-#pragma omp parallel for schedule(guided)
+#pragma omp parallel for schedule(runtime)
     for(int i = 0; i < size; i++) {
         array[i] = rand() % size;
     }
