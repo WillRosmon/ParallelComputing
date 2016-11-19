@@ -14,6 +14,7 @@
 #include <chrono>
 
 populateArray(int*, int);
+mainTask(int*);
 
 int main(int argc, const char* argv[]) {
     int arraySize = atoi(argv[1]);
@@ -26,7 +27,23 @@ int main(int argc, const char* argv[]) {
     
     omp_set_num_threads(numThreads);
     int* randomArray = new int[arraySize];
-    populateArray(randomArray, size);
+    populateArray(randomArray, arraySize);
+    
+    std::chrono::time_point<std::chrono::system_clock> begin, end;
+    
+    //begin the clock
+    begin = std::chrono::system_clock::now();
+#pragma omp parallel
+    {
+#pragma omp single
+        mainTask(randomArray);
+    }
+    
+    //calculate and print the run time
+    end = std::chrono::system_clock::now();
+    std::chrono::duration<double> seconds = end - begin;
+    std::cout << "Merge Sort: Time taken: " << seconds.count();
+    std::cout << " Num threads: " << numThreads << std::endl;
     
     //clean up memory
     delete[] randomArray;
@@ -40,4 +57,16 @@ void populateArray(int* array, int size) {
     for(int i = 0; i < size; i++) {
         array[i] = (rand() % size) + 1;
     }
+}
+
+void mainTask(int* array) {
+    
+}
+
+void mergeSort(int* array, int begin, int end) {
+    
+}
+
+void merge(int* a, int* b, int* sol) {
+    
 }
