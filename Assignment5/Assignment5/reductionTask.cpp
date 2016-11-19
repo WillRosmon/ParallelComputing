@@ -8,6 +8,8 @@
 
 void mainTask(int*, int*);
 void fillArrayRandom(int*, int);
+void newMin(int, int*);
+void findMin(int*, int, int, int*);
 
 
 #include <stdio.h>
@@ -60,7 +62,7 @@ void mainTask(int* array, int* minimum, int granularity, int size) {
     for(int i = 0; i < numTasks; i++) {
         if(size > start + granularity) {
 #pragma omp task
-            findMin(array, start, end);
+            findMin(array, start, end, minimum);
         } else {
 #pragma omp task
             findMin(array, start, size-1);
@@ -69,10 +71,16 @@ void mainTask(int* array, int* minimum, int granularity, int size) {
     }
 }
 
+void findMin(int* array, int start, int end, int* min) {
+    for(int i = start; i < end; i++) {
+        if(array[i] < *min) {
+            newMin(min, &array[i];
+        }
+    }
+}
 
-
-void newMin(int minimum, int* newMin) {
+void newMin(int* minimum, int* newMin) {
     mutex.lock();
-    minimum = *newMin;
+    minimum = newMin;
     mutex.unlock();
 }
