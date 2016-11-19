@@ -89,6 +89,7 @@ void mergeSort(int* array, int begin, int end, int size) {
     int midpoint = begin + sizeLeftHalf;
     mergeSort(array, begin, midpoint, sizeLeftHalf);
     mergeSort(array, midpoint + 1, end, sizeRightHalf);
+    return merge(array, begin, end);
 }
                      
 void merge(int* array, int begin, int end) {
