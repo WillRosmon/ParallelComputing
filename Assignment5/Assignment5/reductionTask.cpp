@@ -18,9 +18,8 @@ void findMin(int*, int, int, int*, int);
 #include <stdlib.h>
 #include <ctime>
 #include <chrono>
-#include <mutex>
 
-std::mutex mutex;
+omp_lock_t minLock;
 
 int main(int argc, const char * argv[]) {
 
@@ -30,17 +29,21 @@ int main(int argc, const char * argv[]) {
     omp_set_num_threads(numThreads);
     int* randomArray = new int[arraySize];
     fillArrayRandom(randomArray, arraySize);
-    
-    int minimum = randomArray[0];
-    std::cout << "Initial Minimum: " << minimum << std::endl;
+
+    omp_init_lock(&minLock);
+
+    int minimum = randomArray[0]; //set min to first value in array
     int threads = omp_get_num_threads();
-    std::cout << "Number of threads: " << threads;
 #pragma omp parallel
     {
 #pragma omp single
         mainTask(randomArray, &minimum, granularity, arraySize);
-        std::cout << "Minimum: " << minimum << std::endl;
     }
+	std::cout << "Minimum of the array is: " << minimum << std::endl;
+	//Clean up memory
+	omp_destroy_lock(&minLock);
+	delete[] randomArray;
+	randomArray = NULL;
 }
 
 void fillArrayRandom(int* array, int size) {
@@ -56,22 +59,22 @@ void mainTask(int* array, int* minimum, int granularity, int size) {
     numTasks = size / granularity;
     int start = 0;
     int end = start + granularity;
-#pragma omp for schedule(runtime)
     for(int i = 0; i < numTasks; i++) {
-        if(size > start + granularity) {
 #pragma omp task
+	{
             findMin(array, start, end, minimum, size);
         }
-        start += granularity;
-#pragma omp taskwait
+        start = end;
+	end += granularity;
     }
+	std::cout << "waiting for tasks to complete" << std::endl;
+#pragma omp taskwait
 }
 
 void findMin(int* array, int start, int end, int* min, int size) {
     if(end > size) {
         end = size;
     }
-#pragma omp for schedule(runtime)
     for(int i = start; i < end; i++) {
         if(array[i] < *min) {
             newMin(min, &array[i]);
@@ -80,7 +83,9 @@ void findMin(int* array, int start, int end, int* min, int size) {
 }
 
 void newMin(int* minimum, int* newMin) {
-    mutex.lock();
-    minimum = newMin;
-    mutex.unlock();
+	omp_set_lock(&minLock);
+	if(*newMin < *minimum){
+   	 *minimum =  *newMin;
+	}
+	omp_unset_lock(&minLock);
 }
