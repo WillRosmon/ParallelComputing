@@ -28,6 +28,12 @@ int main(int argc, const char * argv[]) {
     int arraySize = atoi(argv[2]);
     int granularity = atoi(argv[3]);
     
+    //validate arguements
+    if(numThreads == 0 || arraySize == 0 || granularity == 0) {
+        std::cout << "Invalid arguements";
+        return 0;
+    }
+    
     omp_set_num_threads(numThreads);
     int* randomArray = new int[arraySize]; //Allocate the array to heap
                                            //because it is too large for the stack
