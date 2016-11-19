@@ -34,7 +34,7 @@ int main(int argc, const char* argv[]) {
     
     std::cout << "Original Array: " << std::endl;
     for(int i = 0; i < arraySize; i++) {
-        std::cout << randomArray[i];
+        std::cout << randomArray[i] << " ";
     }
     
     std::chrono::time_point<std::chrono::system_clock> begin, end;
@@ -48,8 +48,9 @@ int main(int argc, const char* argv[]) {
     }
     
     //Debugging
-    for(int i = 0; i < arraySize; i++) {
-        std::cout << randomArray[i];
+    std::cout << "Sorted Array";
+    for(int i = 0; i < arraySize; i ++) {
+        std::cout << randomArray[i] << " ";
     }
     
     //calculate and print the run time
