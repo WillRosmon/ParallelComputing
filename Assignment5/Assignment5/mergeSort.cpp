@@ -129,7 +129,7 @@ void merge(int* array, int begin, int rightBegin, int end, int size) {
         c++;
     }
     //clean up tempArray
-    delete[] tempArray;
-    tempArray = NULL;
+    //delete[] tempArray;
+    //tempArray = NULL;
 }
 
