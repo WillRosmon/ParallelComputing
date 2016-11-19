@@ -63,6 +63,7 @@ void mainTask(int* array, int* minimum, int granularity, int size) {
         if(size > start + granularity) {
 #pragma omp task
             findMin(array, start, end, minimum, size);
+        }
         start += granularity;
 #pragma omp taskwait
     }
