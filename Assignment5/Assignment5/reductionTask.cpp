@@ -47,7 +47,8 @@ int main(int argc, const char * argv[]) {
     std::cout << "Minimum of the array is: " << minimum << std::endl;
     end = std::chrono::system_clock::now();
     std::chrono::duration<double> seconds = end - begin;
-    std::cout << "Reduction: Granularity" << granularity << " num of Threads: " << numThreads << std::endl;
+    std::cout << "Reduction: Time taken: " << seconds.count();
+    std::cout << " Granularity " << granularity << " num of Threads: " << numThreads << std::endl;
     
     //Clean up memory
     omp_destroy_lock(&minLock);
