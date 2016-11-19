@@ -16,7 +16,7 @@
 void populateArray(int*, int);
 void mainTask(int*, int);
 void mergeSort(int*, int, int, int);
-void merge(int*, int, int);
+void merge(int*, int, int, int, int);
 void swap(int*, int*);
 
 int main(int argc, const char* argv[]) {
@@ -74,63 +74,62 @@ void populateArray(int* array, int size) {
 }
 
 void mainTask(int* array, int size) {
+    int* sortedArray = new int[size];
 #pragma omp task
+    {
     mergeSort(array, 0, size-1, size);
-#pragma omp taskwait
-    int numPieces = omp_get_num_threads();
-    bool merged = false;
-    if(numPieces == 1)    {merged = true;}
-    while(!merged) {
-        numPieces /= 2;
-        int start = 0;
-        int increment = size / numPieces;
-        int end = start + increment;
-        for(int i = 0; i < numPieces; i++) {
-#pragma omp task
-            merge(array, start, end);
-        }
-#pragma omp taskwait
-        start = end;
-        if(end += increment >= size - 1) {
-            end = size-1;
-        }
-        merged = end == (size-1);
     }
+#pragma omp taskwait
 }
 
 void mergeSort(int* array, int begin, int end, int size) {
-    if(size <= 2 || begin <= end) {
-        std::cout << "Size of smallest piece: " << size;
-        std::cout << "Beginning: " << begin << "Ending: " << end << std::endl;
+    if(size < 2) {
         return;
     }
-    int sizeLeftHalf = size / 2;
-    int sizeRightHalf = size - sizeLeftHalf;
-    int midpoint = begin + sizeLeftHalf;
-    mergeSort(array, begin, midpoint, sizeLeftHalf);
-    mergeSort(array, midpoint + 1, end, sizeRightHalf);
-    return merge(array, begin, end);
-}
-                     
-void merge(int* array, int begin, int end) {
-    if(end <= begin) {
-        return;
-    } else {
-        int a = begin;
-        int b = (begin + end) / 2;
-        
-        while (a < b && b < end) {
-            while(array[b] < array[a]) {
-                swap(&array[a], &array[b]);
-                b++;
-            }
-            a++;
-        }
+
+    int leftSize = size / 2;
+    int rightSize = size - leftSize;
+    int leftEnd = begin + leftSize - 1;
+    
+#pragma omp task
+    {
+        mergeSort(array, begin, leftEnd, leftSize);
     }
+#pragma omp task
+    {
+        mergeSort(array, leftEnd, end, rightSize);
+    }
+#pragma omp taskwait
+    merge(array, begin, leftEnd, end, size);
 }
 
-void swap(int* a, int* b) {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
+void merge(int* array, int begin, int rightBegin, int end, int size) {
+    int a, b, c;
+    a = begin;
+    b = rightBegin;
+    c = 0;
+    int* tempArray = new int[size];
+    while(a < rightBegin && b < end) {
+        if(array[a] > array[b]) {
+            tempArray[c] = array[b];
+            b++;
+        } else {
+            tempArray[c] = array[a];
+            a++;
+        }
+        c++;
+    }
+    
+    
+    //copy temp array back into original array
+    c = 0;
+    for(int i = begin; i < end; i++)
+    {
+        array[i] = tempArray[c];
+        c++;
+    }
+    //clean up tempArray
+    delete[] tempArray;
+    tempArray = NULL;
 }
+
