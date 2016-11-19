@@ -36,7 +36,8 @@ int main(int argc, const char * argv[]) {
     omp_init_lock(&minLock);  //Initialize the omp lock for the minimum variable
     
     int minimum = randomArray[0]; //set min to first value in array
-
+    std::chrono::time_point begin, end;
+    begin = std::chrono::system_clock::now();
     //begin parallel portion
 #pragma omp parallel
     {
@@ -44,6 +45,9 @@ int main(int argc, const char * argv[]) {
         mainTask(randomArray, &minimum, granularity, arraySize);  //initialize the main task
     }
     std::cout << "Minimum of the array is: " << minimum << std::endl;
+    end = std::chrono::system_clock::now();
+    std::chrono::duration<double> seconds = end - begin;
+    std::cout << "Reduction: Granularity" << granularity << " num of Threads: " << numThreads << std::endl;
     
     //Clean up memory
     omp_destroy_lock(&minLock);
