@@ -43,7 +43,9 @@ int main(int argc, const char* argv[]) {
     }
     
     //Debugging
-    for(int i = 0; i < )
+    for(int i = 0; i < arraySize; i++) {
+        std::cout << randomArray[i];
+    }
     
     //calculate and print the run time
     end = std::chrono::system_clock::now();
