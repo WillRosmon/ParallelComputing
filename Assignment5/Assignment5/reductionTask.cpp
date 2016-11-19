@@ -8,7 +8,7 @@
 
 void mainTask(int*, int*, int, int);
 void fillArrayRandom(int*, int);
-void newMin(int, int*);
+void newMin(int*, int*);
 void findMin(int*, int, int, int*);
 
 
@@ -75,7 +75,7 @@ void mainTask(int* array, int* minimum, int granularity, int size) {
 void findMin(int* array, int start, int end, int* min) {
     for(int i = start; i < end; i++) {
         if(array[i] < *min) {
-            newMin(min, array[i]);
+            newMin(min, &array[i]);
         }
     }
 }
