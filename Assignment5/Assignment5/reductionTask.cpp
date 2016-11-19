@@ -8,7 +8,7 @@
 
 void mainTask(int*, int*);
 void fillArrayRandom(int*, int);
-void newMin(int, int*);
+void newMin(int, int*, int);
 void findMin(int*, int, int, int*);
 
 
