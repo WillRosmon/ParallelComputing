@@ -33,8 +33,8 @@ int main(int argc, const char * argv[]) {
     
     int minimum = randomArray[0];
     std::cout << "Initial Minimum: " << minimum << std::endl;
-    
-    std::cout << "Number of threads: " << omp_get_num_threads();
+    int threads = omp_get_num_threads();
+    std::cout << "Number of threads: " << threads;
 #pragma omp parallel
     {
 #pragma omp single
