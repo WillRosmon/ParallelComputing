@@ -31,15 +31,15 @@ int main(int argc, const char * argv[]) {
     int* randomArray = new int[arraySize];
     fillArrayRandom(randomArray, arraySize);
     
-    int minumum = randomArray[0];
+    int minimum = randomArray[0];
     std::cout << "Initial Minimum: " << minimum << std::endl;
     omp_set_num_threads(numThreads);
     std::cout << "Number of threads: " << omp_get_num_threads();
 #pragma omp parallel
     {
 #pragma omp single
-        mainTask(randomArray, &minumum, granularity, arraySize);
-        std::cout << "Minimum: " << minumum << std::endl;
+        mainTask(randomArray, &minimum, granularity, arraySize);
+        std::cout << "Minimum: " << minimum << std::endl;
     }
 }
 
