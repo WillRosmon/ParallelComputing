@@ -33,7 +33,9 @@ int main(int argc, const char* argv[]) {
     populateArray(randomArray, arraySize);
     
     std::cout << "Original Array: " << std::endl;
-    for(int i = 0; i < )
+    for(int i = 0; i < arraySize; i++) {
+        std::cout << randomArray[i];
+    }
     
     std::chrono::time_point<std::chrono::system_clock> begin, end;
     
