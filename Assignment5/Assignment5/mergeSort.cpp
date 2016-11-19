@@ -32,6 +32,9 @@ int main(int argc, const char* argv[]) {
     int* randomArray = new int[arraySize];
     populateArray(randomArray, arraySize);
     
+    std::cout << "Original Array: " << std::endl;
+    for(int i = 0; i < )
+    
     std::chrono::time_point<std::chrono::system_clock> begin, end;
     
     //begin the clock
@@ -98,4 +101,10 @@ void merge(int* array, int begin, int end) {
             a++;
         }
     }
+}
+
+void swap(int* a, int* b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
 }
