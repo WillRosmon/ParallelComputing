@@ -102,7 +102,7 @@ void mergeSort(int* array, int begin, int end, int size) {
     if(size <= 2 || begin <= end) {
         std::cout << "Size of smallest piece: " << size;
         std::cout << "Beginning: " << begin << "Ending: " << end << std::endl;
-        return merge(array, begin, end);
+        return;
     }
     int sizeLeftHalf = size / 2;
     int sizeRightHalf = size - sizeLeftHalf;
