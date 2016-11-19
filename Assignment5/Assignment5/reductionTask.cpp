@@ -59,10 +59,12 @@ void mainTask(int* array, int* minimum, int granularity, int size) {
     int start = 0;
     int end = start + granularity;
 #pragma omp for schedule(runtime)
-    for(int i = 0; ((i < numTasks) && (end > start)); i++) {
+    for(int i = 0; i < numTasks; i++) {
         if(size > start + granularity) {
 #pragma omp task
             findMin(array, start, end, minimum);
+        } else {
+            findMin(array, start, size-1, minimum);
         }
         start += granularity;
 #pragma omp taskwait
