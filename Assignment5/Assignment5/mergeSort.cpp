@@ -80,6 +80,8 @@ void mainTask(int* array, int size) {
 
 void mergeSort(int* array, int begin, int end, int size) {
     if(size <= 2) {
+        std::cout << "Size of smallest piece: " << size;
+        std::cout << "Beginning: " << begin << "Ending: " << end << std::endl;
         return merge(array, begin, end);
     }
     int sizeLeftHalf = size / 2;
