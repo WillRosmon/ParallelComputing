@@ -1,0 +1,6 @@
+waiting for tasks to complete
+Minimum of the array is: 1
+Reduction: Time taken: 0.384856 Granularity 1000 num of Threads: 16
+waiting for tasks to complete
+Minimum of the array is: 1
+Reduction: Time taken: 0.032423 Granularity 10000 num of Threads: 16

@@ -53,12 +53,12 @@ void master(double a, double b, int numPoints, double sol) {
     
     MPI_Comm_size(MPI_COMM_WORLD, &size);
     
-    for(rank = 1; rank < size && work <= b; rank++) {
-        std::cout << "Sending work to process " << rank;
+    for(rank = 1; (rank < size && work <= b); ++rank) {
+        std::cout << "Sending work to process " << rank << std::endl;
         MPI_Send(&work, 1, MPI_DOUBLE, rank, 0, MPI_COMM_WORLD);
         std::cout << "sent " << work << " to rank " << rank << std::endl;
         work += pointIncrement;
-        std::cout << "New work value: " << work;
+        std::cout << "New work value: " << work << std::endl;
     }
     
     std::cout << "Sent all intiial working sets";
