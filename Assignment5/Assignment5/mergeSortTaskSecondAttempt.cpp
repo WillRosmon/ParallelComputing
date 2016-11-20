@@ -65,7 +65,9 @@ int main(int argc, const char* argv[]) {
     std::cout << std::endl << std::endl;
     //clean up memory
     delete[] randomArray;
+    delete[] solutionArray;
     randomArray = NULL;
+    solutionArray = NULL;
 }
 
 //Fill the array with values of 1 - size
@@ -77,18 +79,6 @@ void populateArray(int* array, int size) {
     }
 }
 
-//void mainTask(int* array, int size) {
-//    int* solutionArray = new int[size];
-//    
-//    
-//#pragma omp task
-//    {
-//        mergeSort(array, size, solutionArray);
-//    }
-//#pragma omp taskwait
-//    std::cout << "The sorted array is: " << std::endl;
-//    printArray(solutionArray, size);
-//}
 
 void mergeSort(int* array, int size, int* worker) {
     if(size < 2) {
