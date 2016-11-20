@@ -57,7 +57,7 @@ int main(int argc, const char * argv[]) {
     char filesList;
     int rank, size;
     
-    MPI_Init(&argc, argv);
+    MPI_Init(&argc, &argv);
     
     
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
