@@ -24,7 +24,7 @@ void fileReader(int taskID, char* fileName,int listSize, KeyValue* keyValue, voi
     int err = stat(fileName, &stbuff);
     if(err < 0) {
         std::cout << "Error Opening File.";
-        MPI_Abort();
+        MPI_Abort(MPI_COMM_WORLD, 1);
         return;
     }
     int fileSize = stbuff.st_size;
