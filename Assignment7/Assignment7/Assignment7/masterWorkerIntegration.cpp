@@ -37,6 +37,8 @@ int main(int argc, char * argv[]) {
     if(rank == 0) {
         std::cout << "Master Worker Integration Results: " << sol << std::endl;
     }
+    
+    std::cout << "Finalizing MPI.";
     MPI_Finalize();
     
     return 0;
