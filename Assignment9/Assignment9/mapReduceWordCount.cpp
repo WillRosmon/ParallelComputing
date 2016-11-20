@@ -19,7 +19,7 @@
 using namespace MAPREDUCE_NS;
 
 
-void fileReader(int taskID, char* fileName,int size, KeyValue* keyValue, void* voidPtr) {
+void fileReader(int taskID, char* fileName,int listSize, KeyValue* keyValue, void* voidPtr) {
     struct stat stbuff;
     int err = stat(fileName, &stbuff);
     if(err < 0) {
@@ -57,7 +57,7 @@ int main(int argc, const char * argv[]) {
     char filesList;
     int rank, size;
     
-    MPI_INIT(argc, argv);
+    MPI_INIT(&argc, &argv);
     
     
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
