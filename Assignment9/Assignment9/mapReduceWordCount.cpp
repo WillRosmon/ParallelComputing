@@ -8,7 +8,7 @@
 
 #include <iostream>
 #include <fstream>
-#include "mpi.h"
+#include <mpi.h>
 #include "stdio.h"
 #include "stdlib.h"
 #include "string.h"
@@ -19,7 +19,7 @@
 using namespace MAPREDUCE_NS;
 
 
-void fileReader(int taskID, char* fileName, KeyValue* keyValue, void* voidPtr) {
+void fileReader(int taskID, char* fileName,int size, KeyValue* keyValue, void* voidPtr) {
     struct stat stbuff;
     int err = stat(fileName, &stbuff);
     if(err < 0) {
