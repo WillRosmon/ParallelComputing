@@ -11,6 +11,7 @@
 		9A6ED5161DC2BA6900DEA13D /* staticIntegration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6ED5151DC2BA6900DEA13D /* staticIntegration.cpp */; };
 		9A6ED5181DC2C29E00DEA13D /* masterWorkerIntegration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6ED5171DC2C29E00DEA13D /* masterWorkerIntegration.cpp */; };
 		9A6ED51A1DC2CB3E00DEA13D /* advancedMasterWorker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6ED5191DC2CB3E00DEA13D /* advancedMasterWorker.cpp */; };
+		9A6ED5581DE136CA00DEA13D /* advancedMaster_Worker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6ED5571DE136CA00DEA13D /* advancedMaster_Worker.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,6 +34,7 @@
 		9A6ED5171DC2C29E00DEA13D /* masterWorkerIntegration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = masterWorkerIntegration.cpp; sourceTree = "<group>"; };
 		9A6ED5191DC2CB3E00DEA13D /* advancedMasterWorker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = advancedMasterWorker.cpp; sourceTree = "<group>"; };
 		9A6ED51B1DDE6A3C00DEA13D /* ScriptCompileOnly.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ScriptCompileOnly.sh; sourceTree = "<group>"; };
+		9A6ED5571DE136CA00DEA13D /* advancedMaster_Worker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = advancedMaster_Worker.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				9A6ED5191DC2CB3E00DEA13D /* advancedMasterWorker.cpp */,
 				9A6ED5171DC2C29E00DEA13D /* masterWorkerIntegration.cpp */,
 				9A6ED51B1DDE6A3C00DEA13D /* ScriptCompileOnly.sh */,
+				9A6ED5571DE136CA00DEA13D /* advancedMaster_Worker.cpp */,
 			);
 			path = Assignment7;
 			sourceTree = "<group>";
@@ -132,6 +135,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A6ED5181DC2C29E00DEA13D /* masterWorkerIntegration.cpp in Sources */,
+				9A6ED5581DE136CA00DEA13D /* advancedMaster_Worker.cpp in Sources */,
 				9A6ED51A1DC2CB3E00DEA13D /* advancedMasterWorker.cpp in Sources */,
 				9A6ED5161DC2BA6900DEA13D /* staticIntegration.cpp in Sources */,
 				9A6ED50E1DB9988A00DEA13D /* preliminary.cpp in Sources */,
@@ -255,6 +259,7 @@
 				9A6ED5131DB9988A00DEA13D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
