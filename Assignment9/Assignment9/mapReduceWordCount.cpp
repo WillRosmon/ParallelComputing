@@ -24,7 +24,7 @@ void fileReader(int taskID, char* fileName,int listSize, KeyValue* keyValue, voi
     int err = stat(fileName, &stbuff);
     if(err < 0) {
         std::cout << "Error Opening File.";
-        MPI_ABORT();
+        MPI_Abort();
         return;
     }
     int fileSize = stbuff.st_size;
@@ -57,7 +57,7 @@ int main(int argc, const char * argv[]) {
     char filesList;
     int rank, size;
     
-    MPI_INIT(&argc, &argv);
+    MPI_Init(&argc, &argv);
     
     
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
@@ -73,7 +73,7 @@ int main(int argc, const char * argv[]) {
     
     int nstrings = argc - 1;
     int numTasks = (size * nstrings) / 2;
-    mapreduce-> map(numTasks, nstrings, argv, 0, 0, '\n', 1000, fileReader, NULL);
+    mapreduce-> map(numTasks, nstrings,(char**) argv, 0, 0, '\n', 1000, fileReader, NULL);
 
     MPI_Barrier(MPI_COMM_WORLD);
     mapreduce -> collate(NULL);
@@ -81,6 +81,6 @@ int main(int argc, const char * argv[]) {
     
     
     
-    MPI_FINALIZE();
+    MPI_Finalize();
     return 0;
 }
