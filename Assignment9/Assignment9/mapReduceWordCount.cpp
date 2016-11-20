@@ -73,7 +73,7 @@ int main(int argc, const char * argv[]) {
     
     int nstrings = argc - 1;
     int numTasks = (size * nstrings) / 2;
-    mapreduce-> map(numTasks, nstrings,(char*) argv, 0, 0, '\n', 1000, fileReader, NULL);
+    mapreduce-> map(numTasks, nstrings,(char**) argv, 0, 0, '\n', 1000, fileReader, NULL);
 
     MPI_Barrier(MPI_COMM_WORLD);
     mapreduce -> collate(NULL);
