@@ -70,8 +70,11 @@ int main(int argc, char * argv[]) {
 void worker() {
 	int b = 0;
 	int partialSolution = 0;
-        while(b != -1){
+        while(true){
             MPI_Recv(&b, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, &status);
+			if(b == -1) {
+				break;
+			}
             partialSolution = function(a, b, numPoints, b, b);
             MPI_ISend(&partialSolution, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, 0);
         }
