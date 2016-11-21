@@ -14,6 +14,7 @@
 double function(double, double, int, int, int);
 double f(double);
 void master(double, double, int, double*);
+void worker();
 
 int main(int argc, char * argv[]) {
     double a = atof(argv[1]);
@@ -49,11 +50,12 @@ int main(int argc, char * argv[]) {
         master(a, b, numPoints, &sol);
         
     } else {
-        int b = 0;
-        while(b != -1){
-            MPI_Recv(b, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, &status);
-            sol = function(a, b, numPoints, b, b);
-            MPI_ISend(sol, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, 0);
+        //int b = 0;
+        //while(b != -1){
+            //MPI_Recv(b, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, &status);
+            //sol = function(a, b, numPoints, b, b);
+            //MPI_ISend(sol, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, 0);
+		worker();
         }
     }
     
@@ -63,6 +65,16 @@ int main(int argc, char * argv[]) {
     
     MPI_Finalize();
     return 0;
+}
+
+void worker() {
+	int b = 0;
+	int partialSolution = 0;
+        while(b != -1){
+            MPI_Recv(&b, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, &status);
+            partialSolution = function(a, b, numPoints, b, b);
+            MPI_ISend(&partialSolution, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, 0);
+        }
 }
 
 double master(double a, double b, int numPoints, double* sol) {
