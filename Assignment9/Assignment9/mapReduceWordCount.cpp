@@ -82,5 +82,7 @@ int main(int argc, const char * argv[]) {
     
     
     MPI_Finalize();
+    delete mapreduce;
+    mapreduce = NULL;
     return 0;
 }
