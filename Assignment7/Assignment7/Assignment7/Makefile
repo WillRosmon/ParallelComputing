@@ -1,0 +1,2 @@
+CXX=mpicxx
+CXXFLAGS=-O3
