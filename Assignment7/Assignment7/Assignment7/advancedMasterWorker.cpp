@@ -57,7 +57,6 @@ int main(int argc, char * argv[]) {
             //MPI_ISend(sol, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, 0);
 		worker();
         }
-    }
     
     if(rank == 0) {
         std::cout << "Advanced Master Worker Integration Results: " << sol << std::endl;
