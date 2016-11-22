@@ -18,7 +18,7 @@ void worker();
 
 
 int main(int argc, char * argv[]) {
-    MPI_Init(&argc, &argv);    
+    MPI_Init(&argc, &argv);
     double a = atof(argv[1]);
     double b = atof(argv[2]);
     int numPoints = atoi(argv[3]);
@@ -93,12 +93,16 @@ void worker() {
     MPI_Status status;
     int rank;
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-    MPI_Recv(&work, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, &status);
-    if((double)work == -1) {
-        return;
-    } else {
-        partialSolution = function((double)work, (double)work + 1, 1);
-        MPI_Send(&partialSolution, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
+    
+    while(true) {
+        MPI_Recv(&work, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, &status);
+        std::cout << "rank " << rank << " work " << std::cout << work << std::endl;
+        if((double)work == -1) {
+            break;
+        } else {
+            partialSolution = function((double)work, (double)work + 1, 1);
+            MPI_Send(&partialSolution, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
+        }
     }
 }
 
