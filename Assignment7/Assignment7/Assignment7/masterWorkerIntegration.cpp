@@ -18,6 +18,7 @@ void worker();
 
 
 int main(int argc, char * argv[]) {
+    MPI_Init(&argc, &argv);    
     double a = atof(argv[1]);
     double b = atof(argv[2]);
     int numPoints = atoi(argv[3]);
@@ -25,7 +26,7 @@ int main(int argc, char * argv[]) {
     int rank;
     double buff;
     double sol = 0;
-    MPI_Init(&argc, &argv);
+
     
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     std::cout << "rank " << rank << " initialized" << std::endl;
