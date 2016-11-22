@@ -95,7 +95,7 @@ void worker() {
     
     while(true) {
         MPI_Recv(&work, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, &status);
-        std::cout << "rank " << rank << " work " << std::cout << work << std::endl;
+        std::cout << "rank " << rank << " work " << work << std::endl;
         if((double)work == -1) {
             break;
         } else {
