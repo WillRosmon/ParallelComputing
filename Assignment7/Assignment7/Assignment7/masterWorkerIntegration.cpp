@@ -28,7 +28,7 @@ int main(int argc, char * argv[]) {
     MPI_Init(&argc, &argv);
     
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-    std::cout << "rank " << rank << " initialized\n";
+    std::cout << "rank " << rank << " initialized" << std::endl;
     if(rank == 0) {
         master(a, b, numPoints, sol);
     } else {
@@ -63,7 +63,7 @@ void master(double a, double b, int numPoints, double sol) {
         std::cout << "New work value: " << work << std::endl;
     }
     
-    std::cout << "Sent all intiial working sets";
+    std::cout << "Sent all intiial working sets"<<std::endl;
     while(work <= b) {
         MPI_Recv(&partialSolution, 1, MPI_DOUBLE, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, &status);
         sol += partialSolution;
