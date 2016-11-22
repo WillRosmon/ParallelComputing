@@ -30,7 +30,7 @@ int main(int argc, char * argv[]) {
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
     
-    MPI_status status[size];
+    MPI_Status status[size];
 
     
     if(rank == 0) {
@@ -87,7 +87,7 @@ double master(double a, double b, int numPoints, double* sol) {
     double partialSolution;
     int size;
     double initialbuffer[3];
-    MPI_request requests[size];
+    MPI_Request requests[size];
     int nextRequest = 0;
     
     MPI_COMM_size(MPI_COMM_WORLD, &size);
