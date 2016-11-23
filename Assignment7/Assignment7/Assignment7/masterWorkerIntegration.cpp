@@ -31,7 +31,7 @@ int main(int argc, char * argv[]) {
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     std::cout << "rank " << rank << " initialized" << std::endl;
     if(rank == 0) {
-        master(a, b, numPoints, sol);
+        master(a, b, numPoints, &sol);
     } else {
         worker();
     }
@@ -45,7 +45,7 @@ int main(int argc, char * argv[]) {
     return 0;
 }
 
-void master(double a, double b, int numPoints, double sol) {
+void master(double a, double b, int numPoints, double* sol) {
     std::cout << "Master Process initialized" << std::endl;
     int size;
     double work = a;
